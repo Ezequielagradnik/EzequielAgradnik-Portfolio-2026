@@ -1,6 +1,6 @@
 "use client"
 
-import React from "react"
+import type React from "react"
 
 import { useState, useEffect } from "react"
 import { motion } from "framer-motion"
@@ -86,7 +86,7 @@ export default function Home() {
             <h2 className="text-xl md:text-2xl mb-8 text-gray-300">🚀 Full-Stack Developer | Tech Explorer</h2>
             <div className="flex flex-wrap justify-center gap-4">
               <ScrollLink to="work" smooth={true} duration={500}>
-                <Button className="bg-gradient-to-r from-purple-500 to-pink-500 hover:from-purple-600 hover:to-pink-600 text-white ">
+                <Button className="bg-gradient-to-r from-purple-500 to-pink-500 hover:from-purple-600 hover:to-pink-600 text-white">
                   View Projects
                 </Button>
               </ScrollLink>
@@ -139,7 +139,7 @@ export default function Home() {
               <ServiceCard
                 icon={<Braces className="w-10 h-10 text-purple-500" />}
                 title="Full Stack Development"
-                description="End-to-end web application development with modern frameworks and best practices."
+                description="End-to-end web application development with modern frameworks like React, Next.js, and Node.js. Experienced in building responsive UIs, RESTful APIs, database design, and server-side architecture. Specialized in creating seamless user experiences with optimized performance and scalability."
               />
               <ServiceCard
                 icon={<FileText className="w-10 h-10 text-pink-500" />}

@@ -12,7 +12,7 @@ const timelineData = [
     period: "2023 - Present",
     location: "Argentina",
     type: "Full-time",
-    logo: "/placeholder.svg?height=56&width=56",
+    logo: "/images/zenda-logo.png",
     skills: ["JavaScript", "React", "Node.js", "Web3"],
   },
   {
@@ -22,7 +22,7 @@ const timelineData = [
     period: "2022 - Present",
     location: "Argentina",
     type: "Full-time",
-    logo: "/placeholder.svg?height=56&width=56",
+    logo: "/images/linkup-logo.png",
     skills: ["React", "Next.js", "Tailwind CSS", "Backend"],
   },
 ]
@@ -135,7 +135,7 @@ export default function AboutMe() {
                             alt={item.company}
                             width={56}
                             height={56}
-                            className="rounded-full"
+                            className="rounded-full object-contain"
                           />
                         </div>
                         <div className="text-center md:text-left">
