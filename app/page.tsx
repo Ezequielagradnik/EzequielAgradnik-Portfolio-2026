@@ -1,7 +1,5 @@
 "use client"
 
-import type React from "react"
-
 import { useState, useEffect } from "react"
 import { motion } from "framer-motion"
 import {
@@ -9,13 +7,16 @@ import {
   Linkedin,
   Twitter,
   Calendar,
-  FileText,
-  Blocks,
-  Cpu,
   Braces,
+  Code,
+  Rocket,
+  Palette,
+  Database,
+  FlaskRoundIcon as Flask,
   MessageSquare,
   Smartphone,
   PenTool,
+  Phone,
 } from "lucide-react"
 import { Link as ScrollLink } from "react-scroll"
 import CustomCursor from "@/components/custom-cursor"
@@ -30,7 +31,6 @@ import AnimatedBoxes from "@/components/AnimatedBoxes"
 export default function Home() {
   const [mounted, setMounted] = useState(false)
   const [loading, setLoading] = useState(true)
-  const [formSubmitted, setFormSubmitted] = useState(false)
 
   useEffect(() => {
     setMounted(true)
@@ -43,26 +43,6 @@ export default function Home() {
 
   if (!mounted) return null
   if (loading) return <Loading />
-
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault()
-
-    // Get form data
-    const formData = new FormData(e.currentTarget)
-    const name = formData.get("name")
-    const email = formData.get("email")
-    const message = formData.get("message")
-
-    // In a real implementation, you would send this data to a server
-    // For now, we'll just log it and show a success message
-    console.log("Form submission:", { name, email, message, recipient: "eagradnik@gmail.com" })
-
-    // Show success message
-    setFormSubmitted(true)
-
-    // Reset form
-    e.currentTarget.reset()
-  }
 
   return (
     <div className="min-h-screen bg-black text-white overflow-hidden">
@@ -85,9 +65,9 @@ export default function Home() {
             </h1>
             <h2 className="text-xl md:text-2xl mb-8 text-gray-300">🚀 Full-Stack Developer | Tech Explorer</h2>
             <div className="flex flex-wrap justify-center gap-4">
-              <ScrollLink to="work" smooth={true} duration={500}>
+              <ScrollLink to="services" smooth={true} duration={500}>
                 <Button className="bg-gradient-to-r from-purple-500 to-pink-500 hover:from-purple-600 hover:to-pink-600 text-white">
-                  View Projects
+                  View Expertise
                 </Button>
               </ScrollLink>
               <ScrollLink to="contact" smooth={true} duration={500}>
@@ -127,78 +107,34 @@ export default function Home() {
             </h2>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
               <ServiceCard
-                icon={<Blocks className="w-10 h-10 text-purple-500" />}
-                title="Blockchain Development"
-                description="Custom blockchain solutions, smart contracts, and decentralized applications with a focus on security and efficiency."
-              />
-              <ServiceCard
-                icon={<Cpu className="w-10 h-10 text-pink-500" />}
-                title="ZK & FHE Implementation"
-                description="Zero-knowledge proofs and fully homomorphic encryption solutions for privacy-preserving applications."
-              />
-              <ServiceCard
                 icon={<Braces className="w-10 h-10 text-purple-500" />}
-                title="Full Stack Development"
+                title="🧑‍💻 Full Stack Development"
                 description="End-to-end web application development with modern frameworks like React, Next.js, and Node.js. Experienced in building responsive UIs, RESTful APIs, database design, and server-side architecture. Specialized in creating seamless user experiences with optimized performance and scalability."
               />
               <ServiceCard
-                icon={<FileText className="w-10 h-10 text-pink-500" />}
-                title="Smart Contract Auditing"
-                description="Comprehensive security audits for smart contracts to identify vulnerabilities and ensure robust implementation."
+                icon={<Code className="w-10 h-10 text-pink-500" />}
+                title="🗃️ API Design & Integration"
+                description="Robust design and integration of RESTful and GraphQL APIs. Focused on scalability, security, and performance, enabling seamless data exchange between front-end and back-end systems."
               />
               <ServiceCard
-                icon={<Github className="w-10 h-10 text-purple-500" />}
-                title="Web3 Integration"
-                description="Seamless integration of Web3 technologies into existing applications and platforms."
+                icon={<Rocket className="w-10 h-10 text-purple-500" />}
+                title="🛠️ DevOps & Deployment"
+                description="Setup and automation of CI/CD pipelines using tools like Docker, GitHub Actions, and Vercel. Skilled in deploying scalable apps to cloud platforms like AWS, GCP, and DigitalOcean with zero-downtime strategies."
               />
               <ServiceCard
-                icon={<MessageSquare className="w-10 h-10 text-pink-500" />}
-                title="Technical Consultation"
-                description="Expert advice on blockchain architecture, technology stack selection, and implementation strategies."
+                icon={<Palette className="w-10 h-10 text-pink-500" />}
+                title="🎨 UI/UX Development"
+                description="Crafting intuitive, accessible, and pixel-perfect user interfaces with technologies like Tailwind CSS, Figma, and component libraries. Focused on creating smooth user journeys across devices."
               />
-            </div>
-          </motion.div>
-        </div>
-      </section>
-
-      {/* Work Section */}
-      <section id="work" className="py-20 bg-gradient-to-b from-gray-900 to-black">
-        <div className="container px-4 mx-auto">
-          <motion.div
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            transition={{ duration: 0.8 }}
-            viewport={{ once: true }}
-          >
-            <h2 className="text-3xl md:text-4xl font-bold mb-12 text-center">
-              <span className="bg-clip-text text-transparent bg-gradient-to-r from-purple-400 to-pink-500">
-                What I've Built
-              </span>
-              <span className="ml-2 text-white">🏗️</span>
-            </h2>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-              <ProjectCard
-                title="Serverless Web3 Blog"
-                description="Decentralized blogging platform with permanent storage on Arweave and crypto micropayments."
-                tags={["Next.js", "Firebase", "Arweave", "Web3"]}
+              <ServiceCard
+                icon={<Database className="w-10 h-10 text-purple-500" />}
+                title="🧾 Database Architecture"
+                description="Design and management of relational and non-relational databases (PostgreSQL, MongoDB, etc.). Optimized data models for performance, integrity, and scalability in high-traffic applications."
               />
-              <ProjectCard
-                title="Cross-Chain Bridge"
-                description="Secure bridge for asset transfers between different blockchain networks."
-                tags={["Cross-Chain", "Interoperability", "DeFi"]}
-                image="/images/cross-chain-bridge.jpg"
-              />
-              <ProjectCard
-                title="Decentralized Identity Solution"
-                description="Self-sovereign identity solution using blockchain technology."
-                tags={["DID", "Identity", "Blockchain"]}
-                image="/images/decentralized-identity.jpg"
-              />
-              <ProjectCard
-                title="Solidity Code Generator"
-                description="Tool for rapid development and testing of secure smart contracts."
-                tags={["Solidity", "Smart Contracts", "Development"]}
-                image="/images/solidity-generator.jpg"
+              <ServiceCard
+                icon={<Flask className="w-10 h-10 text-pink-500" />}
+                title="🧪 Testing & Code Quality"
+                description="Implementation of automated testing (unit, integration, e2e) using Jest, Cypress, and other tools. Committed to maintaining high code quality and preventing regressions through best practices."
               />
             </div>
           </motion.div>
@@ -221,104 +157,58 @@ export default function Home() {
               <span className="ml-2 text-white">🚀</span>
             </h2>
             <div className="max-w-3xl mx-auto">
-              <div className="bg-gray-900 p-6 rounded-lg border border-gray-800">
-                {formSubmitted ? (
-                  <div className="text-center py-8">
-                    <motion.div
-                      initial={{ scale: 0 }}
-                      animate={{ scale: 1 }}
-                      className="w-16 h-16 bg-green-500 rounded-full mx-auto flex items-center justify-center mb-4"
-                    >
-                      <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        className="h-8 w-8 text-white"
-                        fill="none"
-                        viewBox="0 0 24 24"
-                        stroke="currentColor"
-                      >
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                      </svg>
-                    </motion.div>
-                    <h3 className="text-xl font-bold text-white mb-2">Message Sent!</h3>
-                    <p className="text-gray-400">Your message has been sent to eagradnik@gmail.com</p>
-                    <Button
-                      onClick={() => setFormSubmitted(false)}
-                      className="mt-6 bg-gradient-to-r from-purple-500 to-pink-500 hover:from-purple-600 hover:to-pink-600"
-                    >
-                      Send Another Message
-                    </Button>
-                  </div>
-                ) : (
-                  <form className="space-y-4" onSubmit={handleSubmit}>
-                    <div>
-                      <label htmlFor="name" className="block text-sm font-medium text-gray-400">
-                        Name
-                      </label>
-                      <input
-                        type="text"
-                        id="name"
-                        name="name"
-                        required
-                        className="mt-1 block w-full rounded-md bg-gray-800 border-gray-700 text-white px-4 py-3"
-                      />
-                    </div>
-                    <div>
-                      <label htmlFor="email" className="block text-sm font-medium text-gray-400">
-                        Email
-                      </label>
-                      <input
-                        type="email"
-                        id="email"
-                        name="email"
-                        required
-                        className="mt-1 block w-full rounded-md bg-gray-800 border-gray-700 text-white px-4 py-3"
-                      />
-                    </div>
-                    <div>
-                      <label htmlFor="message" className="block text-sm font-medium text-gray-400">
-                        Message
-                      </label>
-                      <textarea
-                        id="message"
-                        name="message"
-                        rows={4}
-                        required
-                        className="mt-1 block w-full rounded-md bg-gray-800 border-gray-700 text-white px-4 py-3"
-                      ></textarea>
-                    </div>
-                    <Button
-                      type="submit"
-                      className="w-full bg-gradient-to-r from-purple-500 to-pink-500 hover:from-purple-600 hover:to-pink-600"
-                    >
-                      Send Message
-                    </Button>
-                    <p className="text-xs text-gray-500 text-center mt-2">
-                      Messages will be sent to eagradnik@gmail.com
-                    </p>
-                  </form>
-                )}
-                <div className="mt-6 text-center">
-                  <p className="text-gray-400 mb-2">Prefer to schedule a meeting?</p>
-                  <div className="flex flex-col sm:flex-row justify-center gap-4">
-                    <a
-                      href="https://calendly.com/zenda-websites/30min?back=1&month=2025-04"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="inline-flex items-center justify-center px-4 py-2 border border-transparent text-sm font-medium rounded-md text-white bg-purple-600 hover:bg-purple-700"
-                    >
-                      <Calendar className="mr-2 h-4 w-4" />
-                      Schedule a Meeting
-                    </a>
-                    <a
-                      href="https://drive.google.com/file/d/1Prtj5UBWzvVys8TviXZL-yN_551cRQJQ/view"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="inline-flex items-center justify-center px-4 py-2 border border-transparent text-sm font-medium rounded-md text-white bg-pink-600 hover:bg-pink-700"
-                    >
-                      <FileText className="mr-2 h-4 w-4" />
-                      View CV
-                    </a>
-                  </div>
+              <div className="bg-gray-900 p-8 rounded-lg border border-gray-800">
+                <div className="text-center mb-8">
+                  <h3 className="text-2xl font-bold text-white mb-4">Let's Connect!</h3>
+                  <p className="text-gray-400 max-w-lg mx-auto">
+                    I'm always open to discussing new projects, creative ideas, or opportunities to be part of your
+                    vision.
+                  </p>
+                </div>
+
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                  <a
+                    href="https://calendly.com/zenda-websites/30min?back=1&month=2025-04"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex flex-col items-center justify-center p-6 rounded-lg bg-gray-800 hover:bg-gray-700 transition-colors duration-300 border border-gray-700 hover:border-purple-500"
+                  >
+                    <Calendar className="w-12 h-12 text-purple-500 mb-4" />
+                    <h4 className="text-lg font-semibold text-white mb-2">Schedule a Meeting</h4>
+                    <p className="text-gray-400 text-sm text-center">Book a time slot that works for you</p>
+                  </a>
+
+                  <a
+                    href="https://wa.me/5491133750973"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex flex-col items-center justify-center p-6 rounded-lg bg-gray-800 hover:bg-gray-700 transition-colors duration-300 border border-gray-700 hover:border-purple-500"
+                  >
+                    <Phone className="w-12 h-12 text-green-500 mb-4" />
+                    <h4 className="text-lg font-semibold text-white mb-2">WhatsApp</h4>
+                    <p className="text-gray-400 text-sm text-center">Send me a direct message</p>
+                  </a>
+
+                  <a
+                    href="https://github.com/Ezequielagradnik"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex flex-col items-center justify-center p-6 rounded-lg bg-gray-800 hover:bg-gray-700 transition-colors duration-300 border border-gray-700 hover:border-purple-500"
+                  >
+                    <Github className="w-12 h-12 text-white mb-4" />
+                    <h4 className="text-lg font-semibold text-white mb-2">GitHub</h4>
+                    <p className="text-gray-400 text-sm text-center">Check out my code and projects</p>
+                  </a>
+                </div>
+
+                <div className="mt-8 text-center">
+                  <p className="text-gray-400 mb-2">Or send me an email directly:</p>
+                  <a
+                    href="mailto:eagradnik@gmail.com"
+                    className="text-xl font-medium text-purple-400 hover:text-purple-300 transition-colors duration-300"
+                  >
+                    eagradnik@gmail.com
+                  </a>
                 </div>
               </div>
             </div>
@@ -367,25 +257,6 @@ function ServiceCard({ icon, title, description }) {
       <div className="mb-4 flex justify-center md:justify-start">{icon}</div>
       <h3 className="text-xl font-bold mb-3 text-white">{title}</h3>
       <p className="text-gray-400">{description}</p>
-    </div>
-  )
-}
-
-function ProjectCard({ title, description, tags, image }) {
-  return (
-    <div className="p-6 rounded-lg bg-gray-900 border border-gray-800 hover:border-purple-500 transition-all duration-300">
-      <h3 className="text-xl font-bold mb-3 text-white text-center md:text-left">{title}</h3>
-      <p className="text-gray-400 mb-4 text-center md:text-left">{description}</p>
-      <div className="flex flex-wrap justify-center md:justify-start gap-2">
-        {tags.map((tag, index) => (
-          <span
-            key={index}
-            className="text-xs px-2 py-1 rounded-full bg-gradient-to-r from-purple-500/20 to-pink-500/20 text-purple-300"
-          >
-            {tag}
-          </span>
-        ))}
-      </div>
     </div>
   )
 }
