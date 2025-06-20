@@ -5,7 +5,6 @@ import { motion } from "framer-motion"
 import {
   Github,
   Linkedin,
-  Twitter,
   Calendar,
   Braces,
   Code,
@@ -13,9 +12,6 @@ import {
   Palette,
   Database,
   FlaskRoundIcon as Flask,
-  MessageSquare,
-  Smartphone,
-  PenTool,
   Phone,
 } from "lucide-react"
 import { Link as ScrollLink } from "react-scroll"
@@ -27,6 +23,7 @@ import AboutMe from "@/components/about-me"
 import Loading from "@/components/loading"
 import InteractiveShapes from "@/components/InteractiveShapes"
 import AnimatedBoxes from "@/components/AnimatedBoxes"
+import PortfolioCarousel from "@/components/portfolio-carousel"
 
 export default function Home() {
   const [mounted, setMounted] = useState(false)
@@ -65,9 +62,9 @@ export default function Home() {
             </h1>
             <h2 className="text-xl md:text-2xl mb-8 text-gray-300">🚀 Full-Stack Developer | Tech Explorer</h2>
             <div className="flex flex-wrap justify-center gap-4">
-              <ScrollLink to="services" smooth={true} duration={500}>
+              <ScrollLink to="portfolio" smooth={true} duration={500}>
                 <Button className="bg-gradient-to-r from-purple-500 to-pink-500 hover:from-purple-600 hover:to-pink-600 text-white">
-                  View Expertise
+                  View Portfolio
                 </Button>
               </ScrollLink>
               <ScrollLink to="contact" smooth={true} duration={500}>
@@ -137,6 +134,29 @@ export default function Home() {
                 description="Implementation of automated testing (unit, integration, e2e) using Jest, Cypress, and other tools. Committed to maintaining high code quality and preventing regressions through best practices."
               />
             </div>
+          </motion.div>
+        </div>
+      </section>
+
+      {/* Portfolio Section */}
+      <section id="portfolio" className="py-20 bg-gradient-to-b from-gray-900 to-black">
+        <div className="container px-4 mx-auto">
+          <motion.div
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            transition={{ duration: 0.8 }}
+            viewport={{ once: true }}
+          >
+            <h2 className="text-3xl md:text-4xl font-bold mb-12 text-center">
+              <span className="bg-clip-text text-transparent bg-gradient-to-r from-purple-400 to-pink-500">
+                Featured Projects
+              </span>
+              <span className="ml-2 text-white">🎨</span>
+            </h2>
+            <p className="text-gray-400 text-center mb-12 max-w-2xl mx-auto">
+              A showcase of websites and applications I've built for clients around the world, from Dubai to Argentina.
+            </p>
+            <PortfolioCarousel />
           </motion.div>
         </div>
       </section>
@@ -225,20 +245,6 @@ export default function Home() {
               icon={<Linkedin />}
               href="https://www.linkedin.com/in/ezequiel-agradnik-a6a790331/"
               label="LinkedIn"
-            />
-            <SocialIcon icon={<Twitter />} href="https://twitter.com/aakash4dev" label="Twitter" />
-            <SocialIcon icon={<MessageSquare />} href="https://discord.com/users/aakash4dev" label="Discord" />
-            <SocialIcon icon={<PenTool />} href="https://medium.com/@aakash4dev" label="Medium" />
-            <SocialIcon
-              icon={<Smartphone />}
-              href="#"
-              label="Mobile Apps"
-              className="opacity-50 cursor-not-allowed"
-              onClick={(e) => {
-                e.preventDefault()
-                // You can add a console.log here if you want to verify it's working
-                console.log("Mobile icon click prevented")
-              }}
             />
           </div>
           <div className="text-center text-gray-500 text-sm">

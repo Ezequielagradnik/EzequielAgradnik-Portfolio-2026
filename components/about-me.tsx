@@ -9,21 +9,21 @@ const timelineData = [
     id: 1,
     company: "Zenda",
     role: "CTO",
-    period: "2023 - Present",
+    period: "2024 - Present",
     location: "Argentina",
     type: "Full-time",
     logo: "/images/zenda-logo.png",
-    skills: ["JavaScript", "React", "Node.js", "Web3"],
+    skills: [],
   },
   {
     id: 2,
     company: "LinkUp",
     role: "Full Stack Developer",
-    period: "2022 - Present",
+    period: "2024 - Present",
     location: "Argentina",
     type: "Full-time",
     logo: "/images/linkup-logo.png",
-    skills: ["React", "Next.js", "Tailwind CSS", "Backend"],
+    skills: [],
   },
 ]
 
@@ -155,18 +155,6 @@ export default function AboutMe() {
                           </div>
                         </div>
                       </div>
-                      {item.skills.length > 0 && (
-                        <div className="flex flex-wrap justify-center md:justify-start gap-2 mt-4">
-                          {item.skills.map((skill, skillIndex) => (
-                            <span
-                              key={skillIndex}
-                              className="px-3 py-1 text-sm rounded-full bg-gradient-to-r from-purple-500/10 to-pink-500/10 text-purple-300 border border-purple-500/20"
-                            >
-                              {skill}
-                            </span>
-                          ))}
-                        </div>
-                      )}
                     </div>
 
                     {/* Timeline Point (hidden on mobile) */}
