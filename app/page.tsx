@@ -9,10 +9,11 @@ import {
   Braces,
   Code,
   Rocket,
-  Palette,
+  Workflow,
   Database,
   FlaskRoundIcon as Flask,
   Phone,
+  ChevronDown,
 } from "lucide-react"
 import { Link as ScrollLink } from "react-scroll"
 import CustomCursor from "@/components/custom-cursor"
@@ -60,7 +61,7 @@ export default function Home() {
             <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold mb-4 bg-clip-text text-transparent bg-gradient-to-r from-purple-400 via-pink-500 to-red-500 leading-tight py-2">
               Hey! It's Ezequiel Agradnik
             </h1>
-            <h2 className="text-xl md:text-2xl mb-8 text-gray-300">🚀 Full-Stack Developer | Tech Explorer</h2>
+            <h2 className="text-xl md:text-2xl mb-8 text-gray-300">🚀 Full-Stack Developer | Automation Developer</h2>
             <div className="flex flex-wrap justify-center gap-4">
               <ScrollLink to="portfolio" smooth={true} duration={500}>
                 <Button className="bg-gradient-to-r from-purple-500 to-pink-500 hover:from-purple-600 hover:to-pink-600 text-white">
@@ -78,6 +79,27 @@ export default function Home() {
             </div>
           </motion.div>
         </div>
+
+        <ScrollLink
+          to="about"
+          smooth={true}
+          duration={500}
+          className="absolute bottom-8 left-1/2 -translate-x-1/2 z-10 cursor-pointer"
+          aria-label="Scroll to about section"
+        >
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1, y: [0, 8, 0] }}
+            transition={{
+              opacity: { duration: 0.8, delay: 1.2 },
+              y: { duration: 1.8, repeat: Infinity, ease: "easeInOut", delay: 1.2 },
+            }}
+            className="flex flex-col items-center gap-1 text-gray-400 hover:text-purple-400 transition-colors"
+          >
+            <span className="text-xs uppercase tracking-widest">Scroll</span>
+            <ChevronDown className="w-5 h-5" />
+          </motion.div>
+        </ScrollLink>
       </section>
 
       {/* About Section */}
@@ -102,34 +124,40 @@ export default function Home() {
               </span>
               <span className="ml-2 text-white">🛠️</span>
             </h2>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
               <ServiceCard
-                icon={<Braces className="w-10 h-10 text-purple-500" />}
+                index={0}
+                icon={<Braces className="w-7 h-7 text-purple-400" />}
                 title="🧑‍💻 Full Stack Development"
                 description="End-to-end web application development with modern frameworks like React, Next.js, and Node.js. Experienced in building responsive UIs, RESTful APIs, database design, and server-side architecture. Specialized in creating seamless user experiences with optimized performance and scalability."
               />
               <ServiceCard
-                icon={<Code className="w-10 h-10 text-pink-500" />}
+                index={1}
+                icon={<Code className="w-7 h-7 text-pink-400" />}
                 title="🗃️ API Design & Integration"
                 description="Robust design and integration of RESTful and GraphQL APIs. Focused on scalability, security, and performance, enabling seamless data exchange between front-end and back-end systems."
               />
               <ServiceCard
-                icon={<Rocket className="w-10 h-10 text-purple-500" />}
+                index={2}
+                icon={<Rocket className="w-7 h-7 text-purple-400" />}
                 title="🛠️ DevOps & Deployment"
                 description="Setup and automation of CI/CD pipelines using tools like Docker, GitHub Actions, and Vercel. Skilled in deploying scalable apps to cloud platforms like AWS, GCP, and DigitalOcean with zero-downtime strategies."
               />
               <ServiceCard
-                icon={<Palette className="w-10 h-10 text-pink-500" />}
-                title="🎨 UI/UX Development"
-                description="Crafting intuitive, accessible, and pixel-perfect user interfaces with technologies like Tailwind CSS, Figma, and component libraries. Focused on creating smooth user journeys across devices."
+                index={3}
+                icon={<Workflow className="w-7 h-7 text-pink-400" />}
+                title="🤖 AI & Process Automation"
+                description="Building end-to-end automations with n8n, ManyChat, and AI APIs like Claude and OpenAI. From chatbot flows and lead capture to internal workflows that connect tools and eliminate repetitive work."
               />
               <ServiceCard
-                icon={<Database className="w-10 h-10 text-purple-500" />}
+                index={4}
+                icon={<Database className="w-7 h-7 text-purple-400" />}
                 title="🧾 Database Architecture"
                 description="Design and management of relational and non-relational databases (PostgreSQL, MongoDB, etc.). Optimized data models for performance, integrity, and scalability in high-traffic applications."
               />
               <ServiceCard
-                icon={<Flask className="w-10 h-10 text-pink-500" />}
+                index={5}
+                icon={<Flask className="w-7 h-7 text-pink-400" />}
                 title="🧪 Testing & Code Quality"
                 description="Implementation of automated testing (unit, integration, e2e) using Jest, Cypress, and other tools. Committed to maintaining high code quality and preventing regressions through best practices."
               />
@@ -257,13 +285,48 @@ export default function Home() {
   )
 }
 
-function ServiceCard({ icon, title, description }) {
+function ServiceCard({ icon, title, description, index = 0 }) {
+  const isPurple = index % 2 === 0
+  const glowColor = isPurple
+    ? "from-purple-600 via-purple-500 to-pink-500"
+    : "from-pink-600 via-pink-500 to-purple-500"
+  const iconBg = isPurple
+    ? "bg-purple-500/10 border-purple-500/30 group-hover:border-purple-500/70 group-hover:bg-purple-500/20"
+    : "bg-pink-500/10 border-pink-500/30 group-hover:border-pink-500/70 group-hover:bg-pink-500/20"
+
   return (
-    <div className="p-6 rounded-lg bg-gray-900 border border-gray-800 hover:border-purple-500 transition-all duration-300 text-center md:text-left">
-      <div className="mb-4 flex justify-center md:justify-start">{icon}</div>
-      <h3 className="text-xl font-bold mb-3 text-white">{title}</h3>
-      <p className="text-gray-400">{description}</p>
-    </div>
+    <motion.div
+      initial={{ opacity: 0, y: 30 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.5, delay: index * 0.08, ease: "easeOut" }}
+      viewport={{ once: true, margin: "-50px" }}
+      className="group relative h-full"
+    >
+      {/* Glow behind on hover */}
+      <div
+        className={`absolute -inset-px rounded-2xl bg-gradient-to-br ${glowColor} opacity-0 group-hover:opacity-40 blur-xl transition-opacity duration-500 pointer-events-none`}
+      />
+
+      <div className="relative h-full p-6 rounded-2xl bg-gradient-to-br from-gray-900 to-gray-950 border border-gray-800 group-hover:border-gray-700 group-hover:-translate-y-1 transition-all duration-300 overflow-hidden text-center md:text-left">
+        {/* Faded number watermark */}
+        <span className="absolute top-2 right-3 text-7xl font-black text-white/[0.04] select-none pointer-events-none leading-none">
+          0{index + 1}
+        </span>
+
+        {/* Diagonal shine sweep on hover */}
+        <div className="absolute inset-0 -translate-x-full group-hover:translate-x-full transition-transform duration-1000 ease-out bg-gradient-to-r from-transparent via-white/[0.04] to-transparent pointer-events-none" />
+
+        {/* Icon container */}
+        <div
+          className={`relative w-14 h-14 rounded-xl border ${iconBg} flex items-center justify-center mb-5 group-hover:scale-110 transition-all duration-300 mx-auto md:mx-0`}
+        >
+          {icon}
+        </div>
+
+        <h3 className="text-xl font-bold mb-3 text-white relative">{title}</h3>
+        <p className="text-gray-400 relative leading-relaxed">{description}</p>
+      </div>
+    </motion.div>
   )
 }
 

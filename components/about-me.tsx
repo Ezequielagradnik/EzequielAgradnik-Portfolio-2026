@@ -7,40 +7,63 @@ import { Calendar, MapPin, Building2 } from "lucide-react"
 const timelineData = [
   {
     id: 1,
-    company: "Zenda",
-    role: "CTO",
-    period: "2024 - Present",
+    company: "Satellites on Fire",
+    role: "Automation Developer",
+    period: "2026 - Present",
     location: "Argentina",
-    type: "Full-time",
-    logo: "/images/zenda-logo.png",
-    skills: [],
+    type: "Part-time",
+    logo: "/images/satellites-on-fire-logo.png",
+    active: true,
   },
   {
     id: 2,
+    company: "PADI",
+    role: "Web Developer & Process Automation",
+    period: "2026 - Present",
+    location: "Argentina",
+    type: "Freelance",
+    logo: "/images/padi-logo.png",
+    active: true,
+  },
+  {
+    id: 3,
+    company: "Ladder Propiedades",
+    role: "Process Automation",
+    period: "2026 - Present",
+    location: "Argentina",
+    type: "Freelance",
+    logo: "/images/ladder-logo.png",
+    active: true,
+  },
+  {
+    id: 4,
+    company: "Zenda",
+    role: "Co-founder & CTO",
+    period: "2025",
+    location: "Argentina",
+    type: "Co-founder",
+    logo: "/images/zenda-logo.png",
+    active: false,
+  },
+  {
+    id: 5,
     company: "LinkUp",
     role: "Full Stack Developer",
-    period: "2024 - Present",
+    period: "2025",
     location: "Argentina",
-    type: "Full-time",
+    type: "Freelance",
     logo: "/images/linkup-logo.png",
-    skills: [],
+    active: false,
   },
 ]
 
-const skillsData = {
-  "Programming Languages": [
-    { name: "JavaScript", proficiency: 90 },
-    { name: "TypeScript", proficiency: 80 },
-    { name: "Python", proficiency: 50 },
-    { name: "C#", proficiency: 50 },
-  ],
-  "Frameworks/Libraries": [
-    { name: "React", proficiency: 95 },
-    { name: "Next.js", proficiency: 85 },
-    { name: "Node.js", proficiency: 75 },
-    { name: "Express.js", proficiency: 65 },
-  ],
-  Tools: [{ name: "Git", proficiency: 98 }],
+const skillsData: Record<string, string[]> = {
+  Languages: ["JavaScript", "TypeScript", "Python", "C#"],
+  Frontend: ["React", "Next.js", "Tailwind CSS", "Framer Motion"],
+  "Backend & Databases": ["Node.js", "Express.js", "PostgreSQL", "MongoDB"],
+  Automation: ["n8n", "REST APIs", "Web Scraping", "Python Scripting"],
+  Cybersecurity: ["Network Security", "Linux", "Cisco Networking"],
+  Tools: ["Git", "GitHub", "Vercel"],
 }
 
 export default function AboutMe() {
@@ -75,8 +98,9 @@ export default function AboutMe() {
               <div className="prose prose-invert max-w-none text-center md:text-left">
                 {/* Mobile description */}
                 <p className="text-lg leading-relaxed md:hidden">
-                  Full Stack Developer currently in my final year at ORT high school. Working on exciting ventures like
-                  Zenda and Linkup. Passionate about building innovative digital solutions.
+                  18-year-old developer working part-time as an Automation Developer at Satellites on Fire, studying
+                  Cybersecurity at Universidad de Palermo, and freelancing for clients across Dubai, Israel, and
+                  Argentina.
                 </p>
                 {/* Desktop description */}
                 <div className="hidden md:block">
@@ -84,17 +108,22 @@ export default function AboutMe() {
                     🚀 <strong>Hey, I'm Ezequiel Agradnik!</strong>
                   </p>
                   <p className="mb-4">
-                    I'm a 17-year-old <strong>Full Stack Developer</strong> currently in my final year at ORT high
-                    school. I'm actively involved in several exciting ventures, including <strong>Zenda</strong> and{" "}
-                    <strong>Linkup</strong>, where I apply my skills across both frontend and backend technologies.
+                    I'm an 18-year-old developer based in Argentina, currently working part-time as an{" "}
+                    <strong>Automation Developer at Satellites on Fire</strong>, where I build automations that
+                    streamline the team's internal processes.
                   </p>
                   <p className="mb-4">
-                    Over the past summer, I had the opportunity to work with <strong>two clients based in Dubai</strong>
-                    , as well as take on several projects here in <strong>Argentina</strong>, gaining valuable
-                    experience and expanding my global perspective.
+                    In parallel, I'm studying <strong>Cybersecurity at Universidad de Palermo</strong> and working
+                    toward the <strong>Cisco Junior Cybersecurity Analyst</strong> certification — combining hands-on
+                    development with a strong security foundation.
+                  </p>
+                  <p className="mb-4">
+                    I've been building websites and automations as a <strong>freelancer since I was 16</strong>,
+                    shipping projects like <strong>PADI</strong> and <strong>Linkup</strong> for clients across{" "}
+                    <strong>Dubai, Israel, and Argentina</strong>.
                   </p>
                   <p>
-                    I'm passionate about building <strong>innovative digital solutions</strong>, and I'm always looking
+                    I'm passionate about building <strong>innovative digital solutions</strong> and I'm always looking
                     for new challenges that push me to grow. Outside of work, I enjoy{" "}
                     <strong>going to the gym, programming in my free time, and playing golf</strong>.
                   </p>
@@ -127,9 +156,15 @@ export default function AboutMe() {
                     className={`flex flex-col ${index % 2 === 0 ? "md:flex-row" : "md:flex-row-reverse"} gap-8 relative`}
                   >
                     {/* Content */}
-                    <div className="md:w-1/2 p-6 bg-gray-900/50 rounded-xl backdrop-blur-sm border border-gray-800">
+                    <div
+                      className={`md:w-1/2 p-6 rounded-xl backdrop-blur-sm border transition-colors ${
+                        item.active
+                          ? "bg-gray-900/70 border-purple-500/40 shadow-lg shadow-purple-500/10"
+                          : "bg-gray-900/50 border-gray-800"
+                      }`}
+                    >
                       <div className="flex flex-col md:flex-row items-center gap-4">
-                        <div className="w-16 h-16 md:w-12 md:h-12 rounded-full bg-gray-800 flex items-center justify-center overflow-hidden mb-4 md:mb-0 mx-auto md:mx-0">
+                        <div className="w-16 h-16 md:w-12 md:h-12 rounded-full bg-gray-800 flex items-center justify-center overflow-hidden mb-4 md:mb-0 mx-auto md:mx-0 shrink-0">
                           <Image
                             src={item.logo || "/placeholder.svg"}
                             alt={item.company}
@@ -138,8 +173,19 @@ export default function AboutMe() {
                             className="rounded-full object-contain"
                           />
                         </div>
-                        <div className="text-center md:text-left">
-                          <h3 className="text-xl font-bold text-white">{item.role}</h3>
+                        <div className="text-center md:text-left flex-1">
+                          <div className="flex flex-wrap items-center justify-center md:justify-start gap-2 mb-1">
+                            <h3 className="text-xl font-bold text-white">{item.role}</h3>
+                            {item.active && (
+                              <span className="inline-flex items-center gap-1.5 px-2 py-0.5 rounded-full bg-green-500/10 border border-green-500/30 text-green-400 text-xs font-medium">
+                                <span className="relative flex h-2 w-2">
+                                  <span className="absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75 animate-ping"></span>
+                                  <span className="relative inline-flex rounded-full h-2 w-2 bg-green-500"></span>
+                                </span>
+                                Active
+                              </span>
+                            )}
+                          </div>
                           <h4 className="text-lg text-purple-400">{item.company}</h4>
                           <div className="flex items-center justify-center md:justify-start gap-2 text-gray-400 mt-1">
                             <Calendar className="w-4 h-4" />
@@ -149,9 +195,11 @@ export default function AboutMe() {
                             <MapPin className="w-4 h-4" />
                             <span className="text-sm">{item.location}</span>
                           </div>
-                          <div className="flex items-center justify-center md:justify-start gap-2 text-gray-400">
-                            <Building2 className="w-4 h-4" />
-                            <span className="text-sm">{item.type}</span>
+                          <div className="flex items-center justify-center md:justify-start gap-2 mt-2">
+                            <span className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-purple-500/10 border border-purple-500/30 text-purple-300 text-xs font-medium">
+                              <Building2 className="w-3 h-3" />
+                              {item.type}
+                            </span>
                           </div>
                         </div>
                       </div>
@@ -184,13 +232,23 @@ export default function AboutMe() {
               </span>
               <span className="ml-2 text-white">⚔️</span>
             </h3>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
               {Object.entries(skillsData).map(([category, skills]) => (
-                <div key={category} className="p-6 bg-gray-900/50 rounded-xl backdrop-blur-sm border border-gray-800">
-                  <h4 className="text-xl font-bold mb-4 text-purple-400 text-center md:text-left">{category}</h4>
-                  {skills.map((skill) => (
-                    <SkillBar key={skill.name} name={skill.name} proficiency={skill.proficiency} />
-                  ))}
+                <div
+                  key={category}
+                  className="p-6 bg-gray-900/50 rounded-xl backdrop-blur-sm border border-gray-800 hover:border-purple-500/40 transition-colors"
+                >
+                  <h4 className="text-lg font-bold mb-4 text-purple-400 text-center md:text-left">{category}</h4>
+                  <div className="flex flex-wrap gap-2 justify-center md:justify-start">
+                    {skills.map((skill) => (
+                      <span
+                        key={skill}
+                        className="px-3 py-1 text-sm rounded-full bg-gray-800/80 border border-gray-700 text-gray-200 hover:border-purple-500 hover:text-purple-300 transition-colors"
+                      >
+                        {skill}
+                      </span>
+                    ))}
+                  </div>
                 </div>
               ))}
             </div>
@@ -198,24 +256,5 @@ export default function AboutMe() {
         </motion.div>
       </div>
     </section>
-  )
-}
-
-function SkillBar({ name, proficiency }) {
-  return (
-    <div className="mb-4">
-      <div className="flex justify-between mb-1">
-        <span className="text-gray-300">{name}</span>
-        <span className="text-gray-400">{proficiency}%</span>
-      </div>
-      <div className="h-2 bg-gray-700 rounded-full overflow-hidden">
-        <motion.div
-          initial={{ width: 0 }}
-          whileInView={{ width: `${proficiency}%` }}
-          transition={{ duration: 1, ease: "easeOut" }}
-          className="h-full bg-gradient-to-r from-purple-500 to-pink-500"
-        />
-      </div>
-    </div>
   )
 }
