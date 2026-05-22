@@ -17,7 +17,6 @@ import {
   Mail,
 } from "lucide-react"
 import { Link as ScrollLink } from "react-scroll"
-import CustomCursor from "@/components/custom-cursor"
 import Navbar from "@/components/navbar"
 import SocialIcon from "@/components/social-icon"
 import { Button } from "@/components/ui/button"
@@ -33,11 +32,13 @@ export default function Home() {
 
   useEffect(() => {
     setMounted(true)
-    const timer = setTimeout(() => {
+    if (document.readyState === "complete") {
       setLoading(false)
-    }, 2000) // Show loading for 2 seconds
-
-    return () => clearTimeout(timer)
+      return
+    }
+    const handleLoad = () => setLoading(false)
+    window.addEventListener("load", handleLoad)
+    return () => window.removeEventListener("load", handleLoad)
   }, [])
 
   if (!mounted) return null
@@ -45,7 +46,6 @@ export default function Home() {
 
   return (
     <div className="min-h-screen bg-black text-white overflow-hidden">
-      <CustomCursor />
       <Navbar />
       <InteractiveShapes />
 
@@ -330,7 +330,7 @@ export default function Home() {
       {/* Footer with Social Links */}
       <footer className="py-12 bg-gradient-to-t from-gray-900 to-black">
         <div className="container px-4 mx-auto">
-          <div className="flex flex-wrap justify-center gap-6 mb-8">
+          <div className="flex flex-wrap justify-center gap-6 mb-6">
             <SocialIcon icon={<Github />} href="https://github.com/Ezequielagradnik" label="GitHub" />
             <SocialIcon
               icon={<Linkedin />}
@@ -338,8 +338,20 @@ export default function Home() {
               label="LinkedIn"
             />
           </div>
-          <div className="text-center text-gray-500 text-sm">
-            <p>© {new Date().getFullYear()} Ezequiel Agradnik. All rights reserved.</p>
+          <div className="text-center text-gray-500 text-sm space-y-2">
+            <p>
+              Built with{" "}
+              <span className="bg-clip-text text-transparent bg-gradient-to-r from-purple-400 to-pink-500 font-semibold">
+                Next.js · Tailwind · Framer Motion
+              </span>
+            </p>
+            <p>
+              Made with <span className="text-pink-400">♥</span> and a lot of <span className="text-amber-400">☕</span>{" "}
+              in Buenos Aires
+            </p>
+            <p className="pt-2 border-t border-gray-800/50 mt-4">
+              © {new Date().getFullYear()} Ezequiel Agradnik. All rights reserved.
+            </p>
             <ContactEmail />
           </div>
         </div>

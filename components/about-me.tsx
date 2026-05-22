@@ -83,52 +83,145 @@ export default function AboutMe() {
             <span className="ml-2">💻</span>
           </h2>
           {/* Profile Section */}
-          <div className="flex flex-col md:flex-row-reverse items-center gap-8 mb-16">
-            <div className="md:w-1/3">
-              <div className="relative w-64 h-64 mx-auto">
-                <Image
-                  src="/images/ezequiel-profile.png"
-                  alt="Ezequiel Agradnik"
-                  fill
-                  className="rounded-full object-cover shadow-lg"
+          <div className="flex flex-col md:flex-row-reverse items-center gap-8 md:gap-12 mb-16">
+            {/* Photo with effects */}
+            <div className="md:w-1/3 flex justify-center">
+              <div className="relative w-72 h-72">
+                {/* Pulsing glow behind */}
+                <motion.div
+                  animate={{ scale: [1, 1.15, 1], opacity: [0.25, 0.5, 0.25] }}
+                  transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
+                  className="absolute inset-0 bg-gradient-to-br from-purple-500 to-pink-500 rounded-full blur-3xl pointer-events-none"
                 />
+
+                {/* Rotating conic gradient ring */}
+                <motion.div
+                  animate={{ rotate: 360 }}
+                  transition={{ duration: 8, repeat: Infinity, ease: "linear" }}
+                  className="absolute inset-0 rounded-full"
+                  style={{
+                    background:
+                      "conic-gradient(from 0deg, #a855f7, #ec4899, #f43f5e, #ec4899, #a855f7)",
+                  }}
+                />
+
+                {/* Photo */}
+                <div className="absolute inset-[3px] rounded-full overflow-hidden group">
+                  <Image
+                    src="/images/ezequiel-profile.png"
+                    alt="Ezequiel Agradnik"
+                    fill
+                    className="rounded-full object-cover group-hover:scale-105 transition-transform duration-500"
+                  />
+                </div>
+
               </div>
             </div>
-            <div className="md:w-2/3">
-              <div className="prose prose-invert max-w-none text-center md:text-left">
-                {/* Mobile description */}
-                <p className="text-lg leading-relaxed md:hidden">
-                  18-year-old developer working part-time as an Automation Developer at Satellites on Fire, studying
-                  Cybersecurity at Universidad de Palermo, and freelancing for clients across Dubai, Israel, and
-                  Argentina.
-                </p>
-                {/* Desktop description */}
-                <div className="hidden md:block">
-                  <p className="text-xl mb-4">
-                    🚀 <strong>Hey, I'm Ezequiel Agradnik!</strong>
-                  </p>
-                  <p className="mb-4">
-                    I'm an 18-year-old developer based in Argentina, currently working part-time as an{" "}
-                    <strong>Automation Developer at Satellites on Fire</strong>, where I build automations that
-                    streamline the team's internal processes.
-                  </p>
-                  <p className="mb-4">
-                    In parallel, I'm studying <strong>Cybersecurity at Universidad de Palermo</strong> and working
-                    toward the <strong>Cisco Junior Cybersecurity Analyst</strong> certification — combining hands-on
-                    development with a strong security foundation.
-                  </p>
-                  <p className="mb-4">
-                    I've been building websites and automations as a <strong>freelancer since I was 16</strong>,
-                    shipping projects like <strong>PADI</strong> and <strong>Linkup</strong> for clients across{" "}
-                    <strong>Dubai, Israel, and Argentina</strong>.
-                  </p>
-                  <p>
-                    I'm passionate about building <strong>innovative digital solutions</strong> and I'm always looking
-                    for new challenges that push me to grow. Outside of work, I enjoy{" "}
-                    <strong>going to the gym, programming in my free time, and playing golf</strong>.
-                  </p>
-                </div>
+
+            {/* Text column */}
+            <div className="md:w-2/3 w-full">
+              {/* Stats row */}
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5 }}
+                viewport={{ once: true }}
+                className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8 pb-8 border-b border-gray-800"
+              >
+                <Stat number="18" label="Years Old" />
+                <Stat number="2+" label="Yrs Freelancing" />
+                <Stat number="3" label="Countries" />
+                <Stat number="10+" label="Clients" />
+              </motion.div>
+
+              {/* Mobile description */}
+              <p className="text-lg leading-relaxed text-center md:hidden text-gray-200">
+                18-year-old developer working part-time as an Automation Developer at Satellites on Fire, studying
+                Cybersecurity at Universidad de Palermo, and freelancing for clients across Dubai, Israel, and
+                Argentina.
+              </p>
+
+              {/* Desktop description with stagger */}
+              <div className="hidden md:block prose prose-invert max-w-none text-left">
+                <motion.p
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.5, delay: 0.1 }}
+                  viewport={{ once: true }}
+                  className="text-xl mb-4"
+                >
+                  🚀 <strong>Hey, I'm Ezequiel Agradnik!</strong>
+                </motion.p>
+                <motion.p
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.5, delay: 0.2 }}
+                  viewport={{ once: true }}
+                  className="mb-4"
+                >
+                  I'm an 18-year-old developer based in Argentina, currently working part-time as an{" "}
+                  <strong>Automation Developer at Satellites on Fire</strong>, where I build automations that
+                  streamline the team's internal processes.
+                </motion.p>
+                <motion.p
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.5, delay: 0.3 }}
+                  viewport={{ once: true }}
+                  className="mb-4"
+                >
+                  In parallel, I'm studying <strong>Cybersecurity at Universidad de Palermo</strong> and working
+                  toward the <strong>Cisco Junior Cybersecurity Analyst</strong> certification — combining hands-on
+                  development with a strong security foundation.
+                </motion.p>
+                <motion.p
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.5, delay: 0.4 }}
+                  viewport={{ once: true }}
+                  className="mb-4"
+                >
+                  I've been building websites and automations as a <strong>freelancer since I was 16</strong>,
+                  shipping projects like <strong>PADI</strong> and <strong>Linkup</strong> for clients across{" "}
+                  <strong>Dubai, Israel, and Argentina</strong>.
+                </motion.p>
+                <motion.p
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.5, delay: 0.5 }}
+                  viewport={{ once: true }}
+                >
+                  I'm passionate about building <strong>innovative digital solutions</strong> and I'm always looking
+                  for new challenges that push me to grow. Outside of work, I enjoy{" "}
+                  <strong>going to the gym, programming in my free time, and playing golf</strong>.
+                </motion.p>
               </div>
+
+              {/* Currently pills */}
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: 0.6 }}
+                viewport={{ once: true }}
+                className="flex flex-wrap gap-2 mt-6 justify-center md:justify-start"
+              >
+                <span className="text-xs text-gray-500 uppercase tracking-widest self-center mr-1">Currently</span>
+                <span className="px-3 py-1.5 rounded-full bg-purple-500/10 border border-purple-500/40 text-purple-200 text-xs font-medium">
+                  🛰️ Satellites on Fire
+                </span>
+                <span className="px-3 py-1.5 rounded-full bg-pink-500/10 border border-pink-500/40 text-pink-200 text-xs font-medium">
+                  🎓 Universidad de Palermo
+                </span>
+                <span className="px-3 py-1.5 rounded-full bg-sky-500/10 border border-sky-500/40 text-sky-200 text-xs font-medium">
+                  🛡️ Cisco Cybersecurity
+                </span>
+                <span className="px-3 py-1.5 rounded-full bg-amber-500/10 border border-amber-500/40 text-amber-200 text-xs font-medium">
+                  💡 PADI
+                </span>
+                <span className="px-3 py-1.5 rounded-full bg-red-500/10 border border-red-500/40 text-red-200 text-xs font-medium">
+                  🏘️ Ladder Propiedades
+                </span>
+              </motion.div>
             </div>
           </div>
 
@@ -256,5 +349,16 @@ export default function AboutMe() {
         </motion.div>
       </div>
     </section>
+  )
+}
+
+function Stat({ number, label }: { number: string; label: string }) {
+  return (
+    <div className="text-center md:text-left">
+      <div className="text-3xl md:text-4xl font-bold bg-clip-text text-transparent bg-gradient-to-br from-purple-400 to-pink-500">
+        {number}
+      </div>
+      <div className="text-xs text-gray-400 uppercase tracking-wider mt-1">{label}</div>
+    </div>
   )
 }

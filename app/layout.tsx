@@ -1,12 +1,66 @@
 import type React from "react"
-import type { Metadata } from "next"
+import type { Metadata, Viewport } from "next"
 import "./globals.css"
 
+const siteUrl = "https://ezequielagradnik.com"
+const title = "Ezequiel Agradnik — Full-Stack & Automation Developer"
+const description =
+  "18-year-old developer based in Argentina. Automation Developer at Satellites on Fire, Cybersecurity student at Universidad de Palermo. Building websites and automations for 10+ clients across Argentina, Dubai, and Israel."
+
 export const metadata: Metadata = {
-  title: "Ezequiel Agradnik - Full Stack Developer & Tech Explorer",
-  description:
-    "Portfolio of Ezequiel Agradnik, a Full Stack Developer and Tech Explorer specializing in modern web technologies.",
-  generator: "Next.js",
+  metadataBase: new URL(siteUrl),
+  title: {
+    default: title,
+    template: "%s — Ezequiel Agradnik",
+  },
+  description,
+  keywords: [
+    "Ezequiel Agradnik",
+    "Full Stack Developer",
+    "Automation Developer",
+    "Next.js Developer",
+    "React Developer",
+    "n8n",
+    "Argentina Developer",
+    "Cybersecurity",
+    "Freelance Developer",
+    "Satellites on Fire",
+  ],
+  authors: [{ name: "Ezequiel Agradnik", url: siteUrl }],
+  creator: "Ezequiel Agradnik",
+  openGraph: {
+    type: "website",
+    locale: "en_US",
+    url: siteUrl,
+    siteName: "Ezequiel Agradnik",
+    title,
+    description,
+  },
+  twitter: {
+    card: "summary_large_image",
+    title,
+    description,
+    creator: "@ezequielagradnik",
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+    },
+  },
+  alternates: {
+    canonical: siteUrl,
+  },
+}
+
+export const viewport: Viewport = {
+  themeColor: "#0a0a0a",
+  width: "device-width",
+  initialScale: 1,
 }
 
 export default function RootLayout({

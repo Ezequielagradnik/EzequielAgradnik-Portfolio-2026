@@ -54,16 +54,17 @@ const portfolioItems = [
 export default function PortfolioCarousel() {
   const [currentIndex, setCurrentIndex] = useState(0)
   const [isAutoPlaying, setIsAutoPlaying] = useState(true)
+  const [isHovered, setIsHovered] = useState(false)
 
   useEffect(() => {
-    if (!isAutoPlaying) return
+    if (!isAutoPlaying || isHovered) return
 
     const interval = setInterval(() => {
       setCurrentIndex((prevIndex) => (prevIndex + 1) % portfolioItems.length)
-    }, 4000)
+    }, 6000)
 
     return () => clearInterval(interval)
-  }, [isAutoPlaying])
+  }, [isAutoPlaying, isHovered])
 
   const goToNext = () => {
     setCurrentIndex((prevIndex) => (prevIndex + 1) % portfolioItems.length)
@@ -81,7 +82,11 @@ export default function PortfolioCarousel() {
   }
 
   return (
-    <div className="relative w-full max-w-7xl mx-auto">
+    <div
+      className="relative w-full max-w-7xl mx-auto"
+      onMouseEnter={() => setIsHovered(true)}
+      onMouseLeave={() => setIsHovered(false)}
+    >
       {/* Main Carousel */}
       <div className="relative h-[500px] md:h-[600px] lg:h-[700px] overflow-hidden rounded-2xl bg-gray-900 border border-gray-800 shadow-2xl">
         <AnimatePresence mode="wait">
