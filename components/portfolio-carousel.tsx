@@ -124,7 +124,7 @@ export default function PortfolioCarousel() {
                     {portfolioItems[currentIndex].title}
                   </h3>
                   <p className="text-gray-300 text-base md:text-lg lg:text-xl mb-4 md:mb-6 leading-relaxed max-w-3xl">
-                    {portfolioItems[currentIndex].description}
+                    {t.portfolio.items[portfolioItems[currentIndex].descKey]}
                   </p>
                   <div className="flex flex-wrap gap-2 md:gap-3 mb-4 lg:mb-0">
                     {portfolioItems[currentIndex].tags.map((tag, tagIndex) => (
@@ -140,7 +140,9 @@ export default function PortfolioCarousel() {
                   {/* Project Counter - Hidden on mobile, shown on desktop */}
                   <div className="hidden lg:block pt-4 border-t border-gray-700/50">
                     <span className="text-gray-400 text-sm font-medium">
-                      Project {currentIndex + 1} of {portfolioItems.length}
+                      {t.portfolio.projectCounter
+                        .replace("{current}", String(currentIndex + 1))
+                        .replace("{total}", String(portfolioItems.length))}
                     </span>
                   </div>
                 </motion.div>
