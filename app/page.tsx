@@ -25,10 +25,12 @@ import Loading from "@/components/loading"
 import InteractiveShapes from "@/components/InteractiveShapes"
 import AnimatedBoxes from "@/components/AnimatedBoxes"
 import PortfolioCarousel from "@/components/portfolio-carousel"
+import { useLang } from "@/lib/i18n/context"
 
 export default function Home() {
   const [mounted, setMounted] = useState(false)
   const [loading, setLoading] = useState(true)
+  const { t } = useLang()
 
   useEffect(() => {
     setMounted(true)
@@ -60,13 +62,13 @@ export default function Home() {
             className="text-center"
           >
             <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold mb-4 bg-clip-text text-transparent bg-gradient-to-r from-purple-400 via-pink-500 to-red-500 leading-tight py-2">
-              Hey! It's Ezequiel Agradnik
+              {t.hero.greeting}
             </h1>
-            <h2 className="text-xl md:text-2xl mb-8 text-gray-300">🚀 Full-Stack Developer | Automation Developer</h2>
+            <h2 className="text-xl md:text-2xl mb-8 text-gray-300">{t.hero.subtitle}</h2>
             <div className="flex flex-wrap justify-center gap-4">
               <ScrollLink to="portfolio" smooth={true} duration={500}>
                 <Button className="bg-gradient-to-r from-purple-500 to-pink-500 hover:from-purple-600 hover:to-pink-600 text-white">
-                  View Portfolio
+                  {t.hero.viewPortfolio}
                 </Button>
               </ScrollLink>
               <ScrollLink to="contact" smooth={true} duration={500}>
@@ -74,7 +76,7 @@ export default function Home() {
                   variant="outline"
                   className="bg-transparent border-2 border-purple-500 text-white hover:bg-purple-500 hover:text-white transition-all duration-300"
                 >
-                  Contact Me
+                  {t.hero.contactMe}
                 </Button>
               </ScrollLink>
             </div>
@@ -97,7 +99,7 @@ export default function Home() {
             }}
             className="flex flex-col items-center gap-1 text-gray-400 hover:text-purple-400 transition-colors"
           >
-            <span className="text-xs uppercase tracking-widest">Scroll</span>
+            <span className="text-xs uppercase tracking-widest">{t.hero.scroll}</span>
             <ChevronDown className="w-5 h-5" />
           </motion.div>
         </ScrollLink>
@@ -121,7 +123,7 @@ export default function Home() {
           >
             <h2 className="text-3xl md:text-4xl font-bold mb-12 text-center">
               <span className="bg-clip-text text-transparent bg-gradient-to-r from-purple-400 to-pink-500">
-                My Expertise
+                {t.services.title}
               </span>
               <span className="ml-2 text-white">🛠️</span>
             </h2>
@@ -129,38 +131,38 @@ export default function Home() {
               <ServiceCard
                 index={0}
                 icon={<Braces className="w-7 h-7 text-purple-400" />}
-                title="🧑‍💻 Full Stack Development"
-                description="End-to-end web application development with modern frameworks like React, Next.js, and Node.js. Experienced in building responsive UIs, RESTful APIs, database design, and server-side architecture. Specialized in creating seamless user experiences with optimized performance and scalability."
+                title={t.services.cards.fullStack.title}
+                description={t.services.cards.fullStack.description}
               />
               <ServiceCard
                 index={1}
                 icon={<Code className="w-7 h-7 text-pink-400" />}
-                title="🗃️ API Design & Integration"
-                description="Robust design and integration of RESTful and GraphQL APIs. Focused on scalability, security, and performance, enabling seamless data exchange between front-end and back-end systems."
+                title={t.services.cards.api.title}
+                description={t.services.cards.api.description}
               />
               <ServiceCard
                 index={2}
                 icon={<Rocket className="w-7 h-7 text-purple-400" />}
-                title="🛠️ DevOps & Deployment"
-                description="Setup and automation of CI/CD pipelines using tools like Docker, GitHub Actions, and Vercel. Skilled in deploying scalable apps to cloud platforms like AWS, GCP, and DigitalOcean with zero-downtime strategies."
+                title={t.services.cards.devops.title}
+                description={t.services.cards.devops.description}
               />
               <ServiceCard
                 index={3}
                 icon={<Workflow className="w-7 h-7 text-pink-400" />}
-                title="🤖 AI & Process Automation"
-                description="Building end-to-end automations with n8n, ManyChat, and AI APIs like Claude and OpenAI. From chatbot flows and lead capture to internal workflows that connect tools and eliminate repetitive work."
+                title={t.services.cards.automation.title}
+                description={t.services.cards.automation.description}
               />
               <ServiceCard
                 index={4}
                 icon={<Database className="w-7 h-7 text-purple-400" />}
-                title="🧾 Database Architecture"
-                description="Design and management of relational and non-relational databases (PostgreSQL, MongoDB, etc.). Optimized data models for performance, integrity, and scalability in high-traffic applications."
+                title={t.services.cards.database.title}
+                description={t.services.cards.database.description}
               />
               <ServiceCard
                 index={5}
                 icon={<Flask className="w-7 h-7 text-pink-400" />}
-                title="🧪 Testing & Code Quality"
-                description="Implementation of automated testing (unit, integration, e2e) using Jest, Cypress, and other tools. Committed to maintaining high code quality and preventing regressions through best practices."
+                title={t.services.cards.testing.title}
+                description={t.services.cards.testing.description}
               />
             </div>
           </motion.div>
@@ -178,13 +180,11 @@ export default function Home() {
           >
             <h2 className="text-3xl md:text-4xl font-bold mb-12 text-center">
               <span className="bg-clip-text text-transparent bg-gradient-to-r from-purple-400 to-pink-500">
-                Featured Projects
+                {t.portfolio.title}
               </span>
               <span className="ml-2 text-white">🎨</span>
             </h2>
-            <p className="text-gray-400 text-center mb-12 max-w-2xl mx-auto">
-              A showcase of websites and applications I've built for clients around the world, from Dubai to Argentina.
-            </p>
+            <p className="text-gray-400 text-center mb-12 max-w-2xl mx-auto">{t.portfolio.tagline}</p>
             <PortfolioCarousel />
           </motion.div>
         </div>
@@ -205,13 +205,11 @@ export default function Home() {
           >
             <h2 className="text-3xl md:text-4xl font-bold mb-4 text-center">
               <span className="bg-clip-text text-transparent bg-gradient-to-r from-purple-400 to-pink-500">
-                Ping Me
+                {t.contact.title}
               </span>
               <span className="ml-2 text-white">🚀</span>
             </h2>
-            <p className="text-center text-gray-400 mb-16 max-w-xl mx-auto">
-              Always open to new projects, creative ideas, and good conversations.
-            </p>
+            <p className="text-center text-gray-400 mb-16 max-w-xl mx-auto">{t.contact.subtitle}</p>
           </motion.div>
 
           <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center max-w-5xl mx-auto">
@@ -222,10 +220,8 @@ export default function Home() {
               transition={{ duration: 0.6, delay: 0.1 }}
               viewport={{ once: true }}
             >
-              <h3 className="text-2xl md:text-3xl font-bold text-white mb-3">Let's build something together.</h3>
-              <p className="text-gray-400 mb-8 leading-relaxed">
-                Got an idea, a project, or just want to say hi? Drop me a line — I usually reply within a day.
-              </p>
+              <h3 className="text-2xl md:text-3xl font-bold text-white mb-3">{t.contact.heading}</h3>
+              <p className="text-gray-400 mb-8 leading-relaxed">{t.contact.copy}</p>
 
               <a
                 href="mailto:eagradnik@gmail.com"
@@ -235,7 +231,7 @@ export default function Home() {
                   <Mail className="w-7 h-7 text-white" />
                 </div>
                 <div className="text-left min-w-0">
-                  <p className="text-xs uppercase tracking-widest text-gray-400 mb-1">Email me directly</p>
+                  <p className="text-xs uppercase tracking-widest text-gray-400 mb-1">{t.contact.emailLabel}</p>
                   <p className="text-white font-medium text-lg truncate">eagradnik@gmail.com</p>
                 </div>
               </a>
@@ -285,33 +281,35 @@ export default function Home() {
 
                     {/* Content */}
                     <div className="px-5 pt-14 pb-6 relative z-10">
-                      <p className="text-[10px] text-gray-500 uppercase tracking-widest mb-1">Contact Hub</p>
-                      <h4 className="text-white text-xl font-bold mb-1">Reach Ezequiel</h4>
-                      <p className="text-gray-500 text-xs mb-7">Tap to connect</p>
+                      <p className="text-[10px] text-gray-500 uppercase tracking-widest mb-1">
+                        {t.contact.phone.contactHub}
+                      </p>
+                      <h4 className="text-white text-xl font-bold mb-1">{t.contact.phone.reach}</h4>
+                      <p className="text-gray-500 text-xs mb-7">{t.contact.phone.tap}</p>
 
                       <div className="grid grid-cols-2 gap-4">
                         <PhoneApp
                           href="https://calendly.com/zenda-websites/30min?back=1&month=2025-04"
                           icon={<Calendar className="w-7 h-7 text-white" />}
-                          label="Schedule"
+                          label={t.contact.phone.schedule}
                           gradient="from-purple-500 to-pink-500"
                         />
                         <PhoneApp
                           href="https://wa.me/5491133750973"
                           icon={<Phone className="w-7 h-7 text-white" />}
-                          label="WhatsApp"
+                          label={t.contact.phone.whatsapp}
                           gradient="from-green-500 to-emerald-600"
                         />
                         <PhoneApp
                           href="https://github.com/Ezequielagradnik"
                           icon={<Github className="w-7 h-7 text-white" />}
-                          label="GitHub"
+                          label={t.contact.phone.github}
                           gradient="from-gray-600 to-gray-800"
                         />
                         <PhoneApp
                           href="https://www.linkedin.com/in/ezequiel-agradnik-a6a790331/"
                           icon={<Linkedin className="w-7 h-7 text-white" />}
-                          label="LinkedIn"
+                          label={t.contact.phone.linkedin}
                           gradient="from-sky-500 to-blue-600"
                         />
                       </div>
@@ -340,17 +338,13 @@ export default function Home() {
           </div>
           <div className="text-center text-gray-500 text-sm space-y-2">
             <p>
-              Built with{" "}
+              {t.footer.builtWith}{" "}
               <span className="bg-clip-text text-transparent bg-gradient-to-r from-purple-400 to-pink-500 font-semibold">
                 Next.js · Tailwind · Framer Motion
               </span>
             </p>
-            <p>
-              Made with <span className="text-pink-400">♥</span> and a lot of <span className="text-amber-400">☕</span>{" "}
-              in Buenos Aires
-            </p>
             <p className="pt-2 border-t border-gray-800/50 mt-4">
-              © {new Date().getFullYear()} Ezequiel Agradnik. All rights reserved.
+              © {new Date().getFullYear()} Ezequiel Agradnik. {t.footer.rights}
             </p>
             <ContactEmail />
           </div>

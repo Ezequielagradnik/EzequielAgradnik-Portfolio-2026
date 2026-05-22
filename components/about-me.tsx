@@ -3,6 +3,7 @@
 import Image from "next/image"
 import { motion } from "framer-motion"
 import { Calendar, MapPin, Building2 } from "lucide-react"
+import { useLang } from "@/lib/i18n/context"
 
 const timelineData = [
   {
@@ -67,6 +68,7 @@ const skillsData: Record<string, string[]> = {
 }
 
 export default function AboutMe() {
+  const { t } = useLang()
   return (
     <section id="about" className="py-12 bg-gradient-to-b from-black to-gray-900">
       <div className="container px-4 mx-auto">
@@ -78,7 +80,7 @@ export default function AboutMe() {
         >
           <h2 className="text-3xl md:text-4xl font-bold mb-8 text-center">
             <span className="bg-clip-text text-transparent bg-gradient-to-r from-purple-400 to-pink-500">
-              Code & Me
+              {t.about.title}
             </span>
             <span className="ml-2">💻</span>
           </h2>
@@ -128,17 +130,15 @@ export default function AboutMe() {
                 viewport={{ once: true }}
                 className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8 pb-8 border-b border-gray-800"
               >
-                <Stat number="18" label="Years Old" />
-                <Stat number="2+" label="Yrs Freelancing" />
-                <Stat number="3" label="Countries" />
-                <Stat number="10+" label="Clients" />
+                <Stat number="18" label={t.about.stats.yearsOld} />
+                <Stat number="2+" label={t.about.stats.yrsFreelancing} />
+                <Stat number="3" label={t.about.stats.countries} />
+                <Stat number="10+" label={t.about.stats.clients} />
               </motion.div>
 
               {/* Mobile description */}
               <p className="text-lg leading-relaxed text-center md:hidden text-gray-200">
-                18-year-old developer working part-time as an Automation Developer at Satellites on Fire, studying
-                Cybersecurity at Universidad de Palermo, and freelancing for clients across Dubai, Israel, and
-                Argentina.
+                {t.about.mobileDescription}
               </p>
 
               {/* Desktop description with stagger */}
@@ -150,7 +150,7 @@ export default function AboutMe() {
                   viewport={{ once: true }}
                   className="text-xl mb-4"
                 >
-                  🚀 <strong>Hey, I'm Ezequiel Agradnik!</strong>
+                  🚀 <strong>{t.about.greeting}</strong>
                 </motion.p>
                 <motion.p
                   initial={{ opacity: 0, y: 20 }}
@@ -159,9 +159,8 @@ export default function AboutMe() {
                   viewport={{ once: true }}
                   className="mb-4"
                 >
-                  I'm an 18-year-old developer based in Argentina, currently working part-time as an{" "}
-                  <strong>Automation Developer at Satellites on Fire</strong>, where I build automations that
-                  streamline the team's internal processes.
+                  {t.about.paragraph1Intro} <strong>{t.about.paragraph1Role}</strong>
+                  {t.about.paragraph1End}
                 </motion.p>
                 <motion.p
                   initial={{ opacity: 0, y: 20 }}
@@ -170,9 +169,9 @@ export default function AboutMe() {
                   viewport={{ once: true }}
                   className="mb-4"
                 >
-                  In parallel, I'm studying <strong>Cybersecurity at Universidad de Palermo</strong> and working
-                  toward the <strong>Cisco Junior Cybersecurity Analyst</strong> certification — combining hands-on
-                  development with a strong security foundation.
+                  {t.about.paragraph2Intro} <strong>{t.about.paragraph2University}</strong>{" "}
+                  {t.about.paragraph2Middle} <strong>{t.about.paragraph2Cert}</strong>
+                  {t.about.paragraph2End}
                 </motion.p>
                 <motion.p
                   initial={{ opacity: 0, y: 20 }}
@@ -181,9 +180,11 @@ export default function AboutMe() {
                   viewport={{ once: true }}
                   className="mb-4"
                 >
-                  I've been building websites and automations as a <strong>freelancer since I was 16</strong>,
-                  shipping projects like <strong>PADI</strong> and <strong>Linkup</strong> for clients across{" "}
-                  <strong>Dubai, Israel, and Argentina</strong>.
+                  {t.about.paragraph3Intro} <strong>{t.about.paragraph3Freelance}</strong>
+                  {t.about.paragraph3Middle} <strong>{t.about.paragraph3Projects}</strong>{" "}
+                  {t.about.paragraph3And} <strong>{t.about.paragraph3Linkup}</strong> {t.about.paragraph3For}{" "}
+                  <strong>{t.about.paragraph3Countries}</strong>
+                  {t.about.paragraph3End}
                 </motion.p>
                 <motion.p
                   initial={{ opacity: 0, y: 20 }}
@@ -191,9 +192,9 @@ export default function AboutMe() {
                   transition={{ duration: 0.5, delay: 0.5 }}
                   viewport={{ once: true }}
                 >
-                  I'm passionate about building <strong>innovative digital solutions</strong> and I'm always looking
-                  for new challenges that push me to grow. Outside of work, I enjoy{" "}
-                  <strong>going to the gym, programming in my free time, and playing golf</strong>.
+                  {t.about.paragraph4Intro} <strong>{t.about.paragraph4Solutions}</strong>
+                  {t.about.paragraph4Middle} <strong>{t.about.paragraph4Hobbies}</strong>
+                  {t.about.paragraph4End}
                 </motion.p>
               </div>
 
@@ -205,7 +206,7 @@ export default function AboutMe() {
                 viewport={{ once: true }}
                 className="flex flex-wrap gap-2 mt-6 justify-center md:justify-start"
               >
-                <span className="text-xs text-gray-500 uppercase tracking-widest self-center mr-1">Currently</span>
+                <span className="text-xs text-gray-500 uppercase tracking-widest self-center mr-1">{t.about.currently}</span>
                 <span className="px-3 py-1.5 rounded-full bg-purple-500/10 border border-purple-500/40 text-purple-200 text-xs font-medium">
                   🛰️ Satellites on Fire
                 </span>
@@ -229,7 +230,7 @@ export default function AboutMe() {
           <div className="mb-20">
             <h3 className="text-2xl md:text-3xl font-bold mb-8 text-center">
               <span className="bg-clip-text text-transparent bg-gradient-to-r from-purple-400 to-pink-500">
-                The Road So Far
+                {t.timeline.title}
               </span>
               <span className="ml-2 text-white">🛤️</span>
             </h3>
@@ -268,14 +269,16 @@ export default function AboutMe() {
                         </div>
                         <div className="text-center md:text-left flex-1">
                           <div className="flex flex-wrap items-center justify-center md:justify-start gap-2 mb-1">
-                            <h3 className="text-xl font-bold text-white">{item.role}</h3>
+                            <h3 className="text-xl font-bold text-white">
+                              {t.timeline.roles[item.role as keyof typeof t.timeline.roles] ?? item.role}
+                            </h3>
                             {item.active && (
                               <span className="inline-flex items-center gap-1.5 px-2 py-0.5 rounded-full bg-green-500/10 border border-green-500/30 text-green-400 text-xs font-medium">
                                 <span className="relative flex h-2 w-2">
                                   <span className="absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75 animate-ping"></span>
                                   <span className="relative inline-flex rounded-full h-2 w-2 bg-green-500"></span>
                                 </span>
-                                Active
+                                {t.timeline.active}
                               </span>
                             )}
                           </div>
@@ -291,7 +294,7 @@ export default function AboutMe() {
                           <div className="flex items-center justify-center md:justify-start gap-2 mt-2">
                             <span className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-purple-500/10 border border-purple-500/30 text-purple-300 text-xs font-medium">
                               <Building2 className="w-3 h-3" />
-                              {item.type}
+                              {t.timeline.types[item.type as keyof typeof t.timeline.types] ?? item.type}
                             </span>
                           </div>
                         </div>
@@ -321,7 +324,7 @@ export default function AboutMe() {
           <div>
             <h3 className="text-2xl md:text-3xl font-bold mb-8 text-center">
               <span className="bg-clip-text text-transparent bg-gradient-to-r from-purple-400 to-pink-500">
-                Code Arsenal
+                {t.skills.title}
               </span>
               <span className="ml-2 text-white">⚔️</span>
             </h3>
@@ -331,7 +334,9 @@ export default function AboutMe() {
                   key={category}
                   className="p-6 bg-gray-900/50 rounded-xl backdrop-blur-sm border border-gray-800 hover:border-purple-500/40 transition-colors"
                 >
-                  <h4 className="text-lg font-bold mb-4 text-purple-400 text-center md:text-left">{category}</h4>
+                  <h4 className="text-lg font-bold mb-4 text-purple-400 text-center md:text-left">
+                    {t.skills.categories[category as keyof typeof t.skills.categories] ?? category}
+                  </h4>
                   <div className="flex flex-wrap gap-2 justify-center md:justify-start">
                     {skills.map((skill) => (
                       <span

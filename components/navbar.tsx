@@ -6,10 +6,13 @@ import { useState, useEffect } from "react"
 import Link from "next/link"
 import { motion, AnimatePresence } from "framer-motion"
 import { Menu, X, Github, Linkedin, Calendar } from "lucide-react"
+import { useLang } from "@/lib/i18n/context"
+import LanguageSwitcher from "@/components/language-switcher"
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false)
   const [scrolled, setScrolled] = useState(false)
+  const { t } = useLang()
 
   useEffect(() => {
     const handleScroll = () => {
@@ -25,11 +28,11 @@ export default function Navbar() {
   }, [])
 
   const navLinks = [
-    { name: "Home", href: "#home" },
-    { name: "About", href: "#about" },
-    { name: "Services", href: "#services" },
-    { name: "Work", href: "#portfolio" },
-    { name: "Contact", href: "#contact" },
+    { name: t.nav.home, href: "#home" },
+    { name: t.nav.about, href: "#about" },
+    { name: t.nav.services, href: "#services" },
+    { name: t.nav.work, href: "#portfolio" },
+    { name: t.nav.contact, href: "#contact" },
   ]
 
   const scrollToSection = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
@@ -108,10 +111,11 @@ export default function Navbar() {
           >
             <Linkedin size={24} />
           </motion.a>
+          <LanguageSwitcher />
         </div>
 
         {/* Mobile Navigation Toggle */}
-        <div className="md:hidden flex items-center space-x-4">
+        <div className="md:hidden flex items-center space-x-3">
           <motion.a
             href="https://calendly.com/zenda-websites/30min?back=1&month=2025-04"
             target="_blank"
@@ -189,6 +193,9 @@ export default function Navbar() {
                   </Link>
                 </motion.div>
               ))}
+              <div className="flex justify-center mt-2">
+                <LanguageSwitcher />
+              </div>
             </motion.div>
           </motion.div>
         )}

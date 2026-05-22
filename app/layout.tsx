@@ -1,6 +1,7 @@
 import type React from "react"
 import type { Metadata, Viewport } from "next"
 import "./globals.css"
+import { LanguageProvider } from "@/lib/i18n/context"
 
 const siteUrl = "https://ezequielagradnik.com"
 const title = "Ezequiel Agradnik — Full-Stack & Automation Developer"
@@ -70,7 +71,9 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body>{children}</body>
+      <body>
+        <LanguageProvider>{children}</LanguageProvider>
+      </body>
     </html>
   )
 }

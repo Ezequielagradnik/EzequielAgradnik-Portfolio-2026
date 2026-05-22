@@ -4,48 +4,48 @@ import { useState, useEffect } from "react"
 import { motion, AnimatePresence } from "framer-motion"
 import { ChevronLeft, ChevronRight } from "lucide-react"
 import Image from "next/image"
+import { useLang } from "@/lib/i18n/context"
 
 const portfolioItems = [
   {
     id: 1,
     title: "Kurtis Conner",
-    description: "Personal website for comedian and content creator",
+    descKey: "kurtisConner" as const,
     image: "/images/portfolio/kurtis-website.png",
     tags: ["React", "Next.js", "Animation"],
   },
   {
     id: 2,
     title: "Energy Humanities",
-    description: "Academic platform for energy and culture research",
+    descKey: "energyHumanities" as const,
     image: "/images/portfolio/energy-humanities.png",
     tags: ["WordPress", "Custom Theme", "Responsive"],
   },
   {
     id: 3,
     title: "OLB Motors",
-    description: "Luxury automotive dealership in Dubai",
+    descKey: "olbMotors" as const,
     image: "/images/portfolio/olb-motors.png",
     tags: ["Next.js", "Luxury Design", "E-commerce"],
   },
   {
     id: 4,
     title: "LinkUp",
-    description: "Co-pilot platform for early-stage startups",
+    descKey: "linkup" as const,
     image: "/images/portfolio/linkup.png",
     tags: ["React", "SaaS", "Dashboard"],
   },
   {
     id: 5,
     title: "Tarjeta Control",
-    description: "Card payment control service platform",
+    descKey: "tarjetaControl" as const,
     image: "/images/portfolio/tarjeta-control.png",
     tags: ["Spanish", "Fintech", "Business"],
   },
   {
     id: 6,
     title: "PADI Clases",
-    description:
-      "Tutoring marketplace with over 2,500 students where Argentine university students learn from top-scoring peers via live classes, co-studying groups, and AI tutors trained per subject. Used by students from Di Tella, UDESA and more.",
+    descKey: "padiClases" as const,
     image: "/images/portfolio/padi-clases.png",
     tags: ["Next.js", "WordPress", "n8n", "Supabase", "EdTech", "AI Tutoring"],
   },
@@ -55,6 +55,7 @@ export default function PortfolioCarousel() {
   const [currentIndex, setCurrentIndex] = useState(0)
   const [isAutoPlaying, setIsAutoPlaying] = useState(true)
   const [isHovered, setIsHovered] = useState(false)
+  const { t } = useLang()
 
   useEffect(() => {
     if (!isAutoPlaying || isHovered) return
