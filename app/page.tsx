@@ -1,6 +1,6 @@
 "use client"
 
-import { useState, useEffect } from "react"
+import { useState, useEffect, type ReactNode } from "react"
 import { motion } from "framer-motion"
 import {
   Github,
@@ -14,6 +14,7 @@ import {
   FlaskRoundIcon as Flask,
   Phone,
   ChevronDown,
+  Mail,
 } from "lucide-react"
 import { Link as ScrollLink } from "react-scroll"
 import CustomCursor from "@/components/custom-cursor"
@@ -110,7 +111,7 @@ export default function Home() {
       </section>
 
       {/* Services Section */}
-      <section id="services" className="py-20 bg-black">
+      <section id="services" className="py-20 bg-gray-900">
         <div className="container px-4 mx-auto">
           <motion.div
             initial={{ opacity: 0 }}
@@ -190,77 +191,139 @@ export default function Home() {
       </section>
 
       {/* Contact Section */}
-      <section id="contact" className="py-20 bg-black">
-        <div className="container px-4 mx-auto">
+      <section id="contact" className="relative py-20 bg-black overflow-hidden">
+        {/* Ambient background blobs */}
+        <div className="absolute top-1/4 -left-32 w-[500px] h-[500px] bg-purple-600/15 rounded-full blur-3xl pointer-events-none" />
+        <div className="absolute bottom-1/4 -right-32 w-[500px] h-[500px] bg-pink-600/15 rounded-full blur-3xl pointer-events-none" />
+
+        <div className="container relative px-4 mx-auto">
           <motion.div
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            transition={{ duration: 0.8 }}
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
             viewport={{ once: true }}
           >
-            <h2 className="text-3xl md:text-4xl font-bold mb-12 text-center">
+            <h2 className="text-3xl md:text-4xl font-bold mb-4 text-center">
               <span className="bg-clip-text text-transparent bg-gradient-to-r from-purple-400 to-pink-500">
                 Ping Me
               </span>
               <span className="ml-2 text-white">🚀</span>
             </h2>
-            <div className="max-w-3xl mx-auto">
-              <div className="bg-gray-900 p-8 rounded-lg border border-gray-800">
-                <div className="text-center mb-8">
-                  <h3 className="text-2xl font-bold text-white mb-4">Let's Connect!</h3>
-                  <p className="text-gray-400 max-w-lg mx-auto">
-                    I'm always open to discussing new projects, creative ideas, or opportunities to be part of your
-                    vision.
-                  </p>
-                </div>
-
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-                  <a
-                    href="https://calendly.com/zenda-websites/30min?back=1&month=2025-04"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="flex flex-col items-center justify-center p-6 rounded-lg bg-gray-800 hover:bg-gray-700 transition-colors duration-300 border border-gray-700 hover:border-purple-500"
-                  >
-                    <Calendar className="w-12 h-12 text-purple-500 mb-4" />
-                    <h4 className="text-lg font-semibold text-white mb-2">Schedule a Meeting</h4>
-                    <p className="text-gray-400 text-sm text-center">Book a time slot that works for you</p>
-                  </a>
-
-                  <a
-                    href="https://wa.me/5491133750973"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="flex flex-col items-center justify-center p-6 rounded-lg bg-gray-800 hover:bg-gray-700 transition-colors duration-300 border border-gray-700 hover:border-purple-500"
-                  >
-                    <Phone className="w-12 h-12 text-green-500 mb-4" />
-                    <h4 className="text-lg font-semibold text-white mb-2">WhatsApp</h4>
-                    <p className="text-gray-400 text-sm text-center">Send me a direct message</p>
-                  </a>
-
-                  <a
-                    href="https://github.com/Ezequielagradnik"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="flex flex-col items-center justify-center p-6 rounded-lg bg-gray-800 hover:bg-gray-700 transition-colors duration-300 border border-gray-700 hover:border-purple-500"
-                  >
-                    <Github className="w-12 h-12 text-white mb-4" />
-                    <h4 className="text-lg font-semibold text-white mb-2">GitHub</h4>
-                    <p className="text-gray-400 text-sm text-center">Check out my code and projects</p>
-                  </a>
-                </div>
-
-                <div className="mt-8 text-center">
-                  <p className="text-gray-400 mb-2">Or send me an email directly:</p>
-                  <a
-                    href="mailto:eagradnik@gmail.com"
-                    className="text-xl font-medium text-purple-400 hover:text-purple-300 transition-colors duration-300"
-                  >
-                    eagradnik@gmail.com
-                  </a>
-                </div>
-              </div>
-            </div>
+            <p className="text-center text-gray-400 mb-16 max-w-xl mx-auto">
+              Always open to new projects, creative ideas, and good conversations.
+            </p>
           </motion.div>
+
+          <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center max-w-5xl mx-auto">
+            {/* Left: Email CTA + tagline */}
+            <motion.div
+              initial={{ opacity: 0, x: -30 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.6, delay: 0.1 }}
+              viewport={{ once: true }}
+            >
+              <h3 className="text-2xl md:text-3xl font-bold text-white mb-3">Let's build something together.</h3>
+              <p className="text-gray-400 mb-8 leading-relaxed">
+                Got an idea, a project, or just want to say hi? Drop me a line — I usually reply within a day.
+              </p>
+
+              <a
+                href="mailto:eagradnik@gmail.com"
+                className="group flex items-center gap-4 p-5 rounded-2xl bg-gradient-to-r from-purple-500/10 to-pink-500/10 border border-purple-500/30 hover:border-purple-500/70 transition-all hover:shadow-lg hover:shadow-purple-500/20"
+              >
+                <div className="w-14 h-14 rounded-xl bg-gradient-to-br from-purple-500 to-pink-500 flex items-center justify-center shadow-lg shadow-purple-500/30 group-hover:scale-110 transition-transform shrink-0">
+                  <Mail className="w-7 h-7 text-white" />
+                </div>
+                <div className="text-left min-w-0">
+                  <p className="text-xs uppercase tracking-widest text-gray-400 mb-1">Email me directly</p>
+                  <p className="text-white font-medium text-lg truncate">eagradnik@gmail.com</p>
+                </div>
+              </a>
+            </motion.div>
+
+            {/* Right: 3D floating phone */}
+            <motion.div
+              initial={{ opacity: 0, x: 30 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.6, delay: 0.2 }}
+              viewport={{ once: true }}
+              className="flex justify-center"
+              style={{ perspective: "1500px" }}
+            >
+              <motion.div
+                animate={{ y: [0, -12, 0] }}
+                transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
+                style={{
+                  transform: "rotateY(-14deg) rotateX(6deg)",
+                  transformStyle: "preserve-3d",
+                }}
+                className="relative w-72 md:w-80"
+              >
+                {/* Glow underneath */}
+                <div className="absolute -inset-4 bg-gradient-to-br from-purple-500 to-pink-500 rounded-[3.5rem] blur-3xl opacity-30 -z-10" />
+
+                {/* Phone frame */}
+                <div className="relative bg-gradient-to-br from-gray-700 via-gray-800 to-gray-900 rounded-[3rem] p-3 shadow-2xl border border-gray-700/50">
+                  {/* Side buttons */}
+                  <div className="absolute -left-[3px] top-24 w-[3px] h-10 bg-gray-700 rounded-l-sm" />
+                  <div className="absolute -left-[3px] top-40 w-[3px] h-16 bg-gray-700 rounded-l-sm" />
+                  <div className="absolute -right-[3px] top-32 w-[3px] h-20 bg-gray-700 rounded-r-sm" />
+
+                  {/* Screen */}
+                  <div className="relative bg-gradient-to-br from-gray-950 to-black rounded-[2.4rem] aspect-[9/19] overflow-hidden">
+                    {/* Glass reflection */}
+                    <div className="absolute inset-0 bg-gradient-to-br from-white/[0.06] via-transparent to-transparent pointer-events-none z-30" />
+
+                    {/* Dynamic Island */}
+                    <div className="absolute top-3 left-1/2 -translate-x-1/2 w-28 h-7 bg-black rounded-full z-20 border border-gray-800" />
+
+                    {/* Status bar */}
+                    <div className="flex justify-between items-center px-7 pt-3 text-[11px] text-gray-300 relative z-10">
+                      <span className="font-semibold">9:41</span>
+                      <span className="font-medium">5G</span>
+                    </div>
+
+                    {/* Content */}
+                    <div className="px-5 pt-14 pb-6 relative z-10">
+                      <p className="text-[10px] text-gray-500 uppercase tracking-widest mb-1">Contact Hub</p>
+                      <h4 className="text-white text-xl font-bold mb-1">Reach Ezequiel</h4>
+                      <p className="text-gray-500 text-xs mb-7">Tap to connect</p>
+
+                      <div className="grid grid-cols-2 gap-4">
+                        <PhoneApp
+                          href="https://calendly.com/zenda-websites/30min?back=1&month=2025-04"
+                          icon={<Calendar className="w-7 h-7 text-white" />}
+                          label="Schedule"
+                          gradient="from-purple-500 to-pink-500"
+                        />
+                        <PhoneApp
+                          href="https://wa.me/5491133750973"
+                          icon={<Phone className="w-7 h-7 text-white" />}
+                          label="WhatsApp"
+                          gradient="from-green-500 to-emerald-600"
+                        />
+                        <PhoneApp
+                          href="https://github.com/Ezequielagradnik"
+                          icon={<Github className="w-7 h-7 text-white" />}
+                          label="GitHub"
+                          gradient="from-gray-600 to-gray-800"
+                        />
+                        <PhoneApp
+                          href="https://www.linkedin.com/in/ezequiel-agradnik-a6a790331/"
+                          icon={<Linkedin className="w-7 h-7 text-white" />}
+                          label="LinkedIn"
+                          gradient="from-sky-500 to-blue-600"
+                        />
+                      </div>
+                    </div>
+
+                    {/* Home indicator */}
+                    <div className="absolute bottom-2 left-1/2 -translate-x-1/2 w-32 h-1 bg-gray-600 rounded-full z-20" />
+                  </div>
+                </div>
+              </motion.div>
+            </motion.div>
+          </div>
         </div>
       </section>
 
@@ -327,6 +390,34 @@ function ServiceCard({ icon, title, description, index = 0 }) {
         <p className="text-gray-400 relative leading-relaxed">{description}</p>
       </div>
     </motion.div>
+  )
+}
+
+function PhoneApp({
+  href,
+  icon,
+  label,
+  gradient,
+}: {
+  href: string
+  icon: ReactNode
+  label: string
+  gradient: string
+}) {
+  return (
+    <a
+      href={href}
+      target="_blank"
+      rel="noopener noreferrer"
+      className="group flex flex-col items-center gap-2"
+    >
+      <div
+        className={`w-16 h-16 rounded-2xl bg-gradient-to-br ${gradient} flex items-center justify-center shadow-lg group-hover:scale-110 group-active:scale-95 transition-transform duration-200`}
+      >
+        {icon}
+      </div>
+      <span className="text-xs text-gray-200 font-medium">{label}</span>
+    </a>
   )
 }
 
