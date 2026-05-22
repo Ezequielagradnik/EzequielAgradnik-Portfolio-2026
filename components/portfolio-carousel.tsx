@@ -41,6 +41,14 @@ const portfolioItems = [
     image: "/images/portfolio/tarjeta-control.png",
     tags: ["Spanish", "Fintech", "Business"],
   },
+  {
+    id: 6,
+    title: "PADI Clases",
+    description:
+      "Tutoring marketplace with over 2,500 students where Argentine university students learn from top-scoring peers via live classes, co-studying groups, and AI tutors trained per subject. Used by students from Di Tella, UDESA and more.",
+    image: "/images/portfolio/padi-clases.png",
+    tags: ["Next.js", "WordPress", "n8n", "Supabase", "EdTech", "AI Tutoring"],
+  },
 ]
 
 export default function PortfolioCarousel() {

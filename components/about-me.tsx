@@ -32,7 +32,7 @@ const timelineData = [
     period: "2026 - Present",
     location: "Argentina",
     type: "Freelance",
-    logo: "/images/ladder-logo.png",
+    logo: "/images/ladder.png",
     active: true,
   },
   {
