@@ -1,6 +1,7 @@
 "use client"
 
 import { useState, useEffect, type ReactNode } from "react"
+import dynamic from "next/dynamic"
 import { motion } from "framer-motion"
 import {
   Github,
@@ -23,8 +24,19 @@ import { Button } from "@/components/ui/button"
 import AboutMe from "@/components/about-me"
 import Loading from "@/components/loading"
 import InteractiveShapes from "@/components/InteractiveShapes"
-import AnimatedBoxes from "@/components/AnimatedBoxes"
 import PortfolioCarousel from "@/components/portfolio-carousel"
+
+// Three.js only loads on the client, and only for desktops with WebGL —
+// HeroScene falls back to a static gradient on mobile / prefers-reduced-motion.
+const HeroScene = dynamic(() => import("@/components/hero-scene"), {
+  ssr: false,
+  loading: () => (
+    <div className="fixed inset-0 z-0 overflow-hidden pointer-events-none">
+      <div className="absolute top-1/4 -left-32 w-[500px] h-[500px] bg-purple-600/20 rounded-full blur-3xl" />
+      <div className="absolute bottom-1/4 -right-32 w-[500px] h-[500px] bg-pink-600/20 rounded-full blur-3xl" />
+    </div>
+  ),
+})
 import { useLang } from "@/lib/i18n/context"
 
 export default function Home() {
@@ -49,11 +61,14 @@ export default function Home() {
   return (
     <div className="min-h-screen bg-black text-white overflow-hidden">
       <Navbar />
+
+      {/* 3D particle galaxy: fixed backdrop shared by every section */}
+      <HeroScene />
       <InteractiveShapes />
 
-      {/* Hero Section with Animated Boxes */}
+      <main className="relative z-10">
+      {/* Hero Section */}
       <section id="home" className="relative h-screen flex items-center justify-center overflow-hidden">
-        <AnimatedBoxes />
         <div className="container relative z-10 px-4 mx-auto">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -106,14 +121,14 @@ export default function Home() {
       </section>
 
       {/* About Section */}
-      <section id="about" className="py-20 bg-gradient-to-b from-black to-gray-900">
+      <section id="about" className="py-20 bg-black/30">
         <div className="container px-4 mx-auto">
           <AboutMe />
         </div>
       </section>
 
       {/* Services Section */}
-      <section id="services" className="py-20 bg-gray-900">
+      <section id="services" className="py-20 bg-black/50">
         <div className="container px-4 mx-auto">
           <motion.div
             initial={{ opacity: 0 }}
@@ -170,7 +185,7 @@ export default function Home() {
       </section>
 
       {/* Portfolio Section */}
-      <section id="portfolio" className="py-20 bg-gradient-to-b from-gray-900 to-black">
+      <section id="portfolio" className="py-20 bg-black/30">
         <div className="container px-4 mx-auto">
           <motion.div
             initial={{ opacity: 0 }}
@@ -191,7 +206,7 @@ export default function Home() {
       </section>
 
       {/* Contact Section */}
-      <section id="contact" className="relative py-20 bg-black overflow-hidden">
+      <section id="contact" className="relative py-20 bg-black/50 overflow-hidden">
         {/* Ambient background blobs */}
         <div className="absolute top-1/4 -left-32 w-[500px] h-[500px] bg-purple-600/15 rounded-full blur-3xl pointer-events-none" />
         <div className="absolute bottom-1/4 -right-32 w-[500px] h-[500px] bg-pink-600/15 rounded-full blur-3xl pointer-events-none" />
@@ -326,7 +341,7 @@ export default function Home() {
       </section>
 
       {/* Footer with Social Links */}
-      <footer className="py-12 bg-gradient-to-t from-gray-900 to-black">
+      <footer className="py-12 bg-black/60 border-t border-white/5">
         <div className="container px-4 mx-auto">
           <div className="flex flex-wrap justify-center gap-6 mb-6">
             <SocialIcon icon={<Github />} href="https://github.com/Ezequielagradnik" label="GitHub" />
@@ -350,6 +365,7 @@ export default function Home() {
           </div>
         </div>
       </footer>
+      </main>
     </div>
   )
 }

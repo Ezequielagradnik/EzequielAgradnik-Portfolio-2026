@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400">
+  <rect width="400" height="400" fill="#1D2A47" />
+  <text
+    x="200"
+    y="192"
+    text-anchor="middle"
+    font-family="Georgia, 'Times New Roman', serif"
+    font-size="58"
+    letter-spacing="4"
+    fill="#FFFFFF"
+  >BRANDON</text>
+  <text
+    x="200"
+    y="248"
+    text-anchor="middle"
+    font-family="Georgia, 'Times New Roman', serif"
+    font-size="38"
+    font-style="italic"
+    fill="#FFFFFF"
+  >Network</text>
+</svg>

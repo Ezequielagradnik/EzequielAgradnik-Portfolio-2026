@@ -18,6 +18,16 @@ const timelineData = [
   },
   {
     id: 2,
+    company: "Brandon Network",
+    role: "Full Stack & AI Developer",
+    period: "2025 - Present",
+    location: "USA",
+    type: "Freelance",
+    logo: "/images/brandon-logo.svg",
+    active: true,
+  },
+  {
+    id: 3,
     company: "PADI",
     role: "Web Developer & Process Automation",
     period: "2026 - Present",
@@ -27,7 +37,7 @@ const timelineData = [
     active: true,
   },
   {
-    id: 3,
+    id: 4,
     company: "Ladder Propiedades",
     role: "Process Automation",
     period: "2026 - Present",
@@ -37,7 +47,7 @@ const timelineData = [
     active: true,
   },
   {
-    id: 4,
+    id: 5,
     company: "Zenda",
     role: "Co-founder & CTO",
     period: "2025",
@@ -47,7 +57,7 @@ const timelineData = [
     active: false,
   },
   {
-    id: 5,
+    id: 6,
     company: "LinkUp",
     role: "Full Stack Developer",
     period: "2025",
@@ -60,17 +70,23 @@ const timelineData = [
 
 const skillsData: Record<string, string[]> = {
   Languages: ["JavaScript", "TypeScript", "Python", "C#"],
-  Frontend: ["React", "Next.js", "Tailwind CSS", "Framer Motion"],
+  Frontend: ["React", "Next.js", "Tailwind CSS", "HTML / CSS", "Framer Motion", "WordPress"],
   "Backend & Databases": ["Node.js", "Express.js", "PostgreSQL", "MongoDB"],
-  Automation: ["n8n", "REST APIs", "Web Scraping", "Python Scripting"],
-  Cybersecurity: ["Network Security", "Linux", "Cisco Networking"],
-  Tools: ["Git", "GitHub", "Vercel"],
+  "Automation & AI": ["n8n", "Claude & MCP", "Agentic AI", "ManyChat", "REST APIs & Integrations", "Web Scraping"],
+  "DevOps & Cloud": ["Docker", "Kubernetes", "Terraform", "GitHub Actions (CI/CD)", "AWS Lambda", "Vercel", "Git & GitHub"],
+  Cybersecurity: [
+    "Network Security",
+    "Web App Security (OWASP)",
+    "Penetration Testing",
+    "Linux Hardening",
+    "Cisco Networking",
+  ],
 }
 
 export default function AboutMe() {
   const { t } = useLang()
   return (
-    <section id="about" className="py-12 bg-gradient-to-b from-black to-gray-900">
+    <div className="py-12">
       <div className="container px-4 mx-auto">
         <motion.div
           initial={{ opacity: 0 }}
@@ -210,11 +226,11 @@ export default function AboutMe() {
                 <span className="px-3 py-1.5 rounded-full bg-purple-500/10 border border-purple-500/40 text-purple-200 text-xs font-medium">
                   🛰️ Satellites on Fire
                 </span>
-                <span className="px-3 py-1.5 rounded-full bg-pink-500/10 border border-pink-500/40 text-pink-200 text-xs font-medium">
-                  🎓 Universidad de Palermo
-                </span>
                 <span className="px-3 py-1.5 rounded-full bg-sky-500/10 border border-sky-500/40 text-sky-200 text-xs font-medium">
                   🛡️ Cisco Cybersecurity
+                </span>
+                <span className="px-3 py-1.5 rounded-full bg-indigo-500/10 border border-indigo-500/40 text-indigo-200 text-xs font-medium">
+                  ⚖️ Brandon Network
                 </span>
                 <span className="px-3 py-1.5 rounded-full bg-amber-500/10 border border-amber-500/40 text-amber-200 text-xs font-medium">
                   💡 PADI
@@ -353,7 +369,7 @@ export default function AboutMe() {
           </div>
         </motion.div>
       </div>
-    </section>
+    </div>
   )
 }
 

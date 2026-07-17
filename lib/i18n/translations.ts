@@ -63,6 +63,7 @@ export const translations = {
       },
       roles: {
         "Automation Developer": "Automation Developer",
+        "Full Stack & AI Developer": "Full Stack & AI Developer",
         "Web Developer & Process Automation": "Web Developer & Process Automation",
         "Process Automation": "Process Automation",
         "Co-founder & CTO": "Co-founder & CTO",
@@ -75,9 +76,9 @@ export const translations = {
         Languages: "Languages",
         Frontend: "Frontend",
         "Backend & Databases": "Backend & Databases",
-        Automation: "Automation",
+        "Automation & AI": "Automation & AI",
+        "DevOps & Cloud": "DevOps & Cloud",
         Cybersecurity: "Cybersecurity",
-        Tools: "Tools",
       },
     },
     services: {
@@ -211,6 +212,7 @@ export const translations = {
       },
       roles: {
         "Automation Developer": "Desarrollador de Automatizaciones",
+        "Full Stack & AI Developer": "Desarrollador Full Stack e IA",
         "Web Developer & Process Automation": "Desarrollador Web y Automatización de Procesos",
         "Process Automation": "Automatización de Procesos",
         "Co-founder & CTO": "Co-fundador y CTO",
@@ -223,9 +225,9 @@ export const translations = {
         Languages: "Lenguajes",
         Frontend: "Frontend",
         "Backend & Databases": "Backend y Bases de Datos",
-        Automation: "Automatización",
+        "Automation & AI": "Automatización e IA",
+        "DevOps & Cloud": "DevOps y Cloud",
         Cybersecurity: "Ciberseguridad",
-        Tools: "Herramientas",
       },
     },
     services: {
@@ -359,6 +361,7 @@ export const translations = {
       },
       roles: {
         "Automation Developer": "מפתח אוטומציות",
+        "Full Stack & AI Developer": "מפתח Full Stack ו-AI",
         "Web Developer & Process Automation": "מפתח אתרים ואוטומציות תהליכים",
         "Process Automation": "אוטומציית תהליכים",
         "Co-founder & CTO": "מייסד שותף ו-CTO",
@@ -371,9 +374,9 @@ export const translations = {
         Languages: "שפות",
         Frontend: "Frontend",
         "Backend & Databases": "Backend ובסיסי נתונים",
-        Automation: "אוטומציה",
+        "Automation & AI": "אוטומציה ו-AI",
+        "DevOps & Cloud": "DevOps וענן",
         Cybersecurity: "סייבר",
-        Tools: "כלים",
       },
     },
     services: {
