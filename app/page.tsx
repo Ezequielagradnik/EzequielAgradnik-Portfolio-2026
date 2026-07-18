@@ -24,7 +24,6 @@ import { Button } from "@/components/ui/button"
 import AboutMe from "@/components/about-me"
 import Loading from "@/components/loading"
 import InteractiveShapes from "@/components/InteractiveShapes"
-import PortfolioCarousel from "@/components/portfolio-carousel"
 
 // Three.js only loads on the client, and only for desktops with WebGL —
 // HeroScene falls back to a static gradient on mobile / prefers-reduced-motion.
@@ -81,16 +80,8 @@ export default function Home() {
             </h1>
             <h2 className="text-xl md:text-2xl mb-8 text-gray-300">{t.hero.subtitle}</h2>
             <div className="flex flex-wrap justify-center gap-4">
-              <ScrollLink to="portfolio" smooth={true} duration={500}>
-                <Button className="bg-gradient-to-r from-purple-500 to-pink-500 hover:from-purple-600 hover:to-pink-600 text-white">
-                  {t.hero.viewPortfolio}
-                </Button>
-              </ScrollLink>
               <ScrollLink to="contact" smooth={true} duration={500}>
-                <Button
-                  variant="outline"
-                  className="bg-transparent border-2 border-purple-500 text-white hover:bg-purple-500 hover:text-white transition-all duration-300"
-                >
+                <Button className="bg-gradient-to-r from-purple-500 to-pink-500 hover:from-purple-600 hover:to-pink-600 text-white">
                   {t.hero.contactMe}
                 </Button>
               </ScrollLink>
@@ -180,27 +171,6 @@ export default function Home() {
                 description={t.services.cards.testing.description}
               />
             </div>
-          </motion.div>
-        </div>
-      </section>
-
-      {/* Portfolio Section */}
-      <section id="portfolio" className="py-20 bg-black/55">
-        <div className="container px-4 mx-auto">
-          <motion.div
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            transition={{ duration: 0.8 }}
-            viewport={{ once: true }}
-          >
-            <h2 className="text-3xl md:text-4xl font-bold mb-12 text-center">
-              <span className="bg-clip-text text-transparent bg-gradient-to-r from-purple-400 to-pink-500">
-                {t.portfolio.title}
-              </span>
-              <span className="ml-2 text-white">🎨</span>
-            </h2>
-            <p className="text-gray-400 text-center mb-12 max-w-2xl mx-auto">{t.portfolio.tagline}</p>
-            <PortfolioCarousel />
           </motion.div>
         </div>
       </section>

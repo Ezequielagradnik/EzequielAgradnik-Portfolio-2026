@@ -31,7 +31,6 @@ export default function Navbar() {
     { name: t.nav.home, href: "#home" },
     { name: t.nav.about, href: "#about" },
     { name: t.nav.services, href: "#services" },
-    { name: t.nav.work, href: "#portfolio" },
     { name: t.nav.contact, href: "#contact" },
   ]
 
