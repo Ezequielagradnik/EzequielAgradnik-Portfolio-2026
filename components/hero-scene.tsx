@@ -4,14 +4,32 @@ import { useEffect, useMemo, useRef, useState } from "react"
 import { Canvas, useFrame } from "@react-three/fiber"
 import * as THREE from "three"
 
-const GALAXY_COUNT = 4500
-const STAR_COUNT = 1200
+const GALAXY_COUNT = 3500
+const STAR_COUNT = 900
 
 type PointerState = { x: number; y: number }
+type FadeState = { value: number }
 
-function Galaxy({ pointer }: { pointer: PointerState }) {
+// Soft round glow sprite — without a texture, PointsMaterial renders hard squares
+function makeGlowSprite() {
+  const size = 64
+  const canvas = document.createElement("canvas")
+  canvas.width = size
+  canvas.height = size
+  const ctx = canvas.getContext("2d")!
+  const gradient = ctx.createRadialGradient(size / 2, size / 2, 0, size / 2, size / 2, size / 2)
+  gradient.addColorStop(0, "rgba(255,255,255,1)")
+  gradient.addColorStop(0.35, "rgba(255,255,255,0.5)")
+  gradient.addColorStop(1, "rgba(255,255,255,0)")
+  ctx.fillStyle = gradient
+  ctx.fillRect(0, 0, size, size)
+  return new THREE.CanvasTexture(canvas)
+}
+
+function Galaxy({ sprite, pointer, fade }: { sprite: THREE.Texture; pointer: PointerState; fade: FadeState }) {
   const group = useRef<THREE.Group>(null)
   const points = useRef<THREE.Points>(null)
+  const material = useRef<THREE.PointsMaterial>(null)
 
   const [positions, colors] = useMemo(() => {
     const positions = new Float32Array(GALAXY_COUNT * 3)
@@ -54,6 +72,10 @@ function Galaxy({ pointer }: { pointer: PointerState }) {
       group.current.rotation.x = THREE.MathUtils.lerp(group.current.rotation.x, -0.4 + pointer.y * 0.12, 0.05)
       group.current.rotation.z = THREE.MathUtils.lerp(group.current.rotation.z, pointer.x * 0.1, 0.05)
     }
+    if (material.current) {
+      // Full brightness on the hero, dimmed once the user scrolls into content
+      material.current.opacity = 0.15 + 0.75 * fade.value
+    }
   })
 
   return (
@@ -64,11 +86,13 @@ function Galaxy({ pointer }: { pointer: PointerState }) {
           <bufferAttribute attach="attributes-color" args={[colors, 3]} />
         </bufferGeometry>
         <pointsMaterial
-          size={0.025}
+          ref={material}
+          map={sprite}
+          size={0.055}
           sizeAttenuation
           vertexColors
           transparent
-          opacity={0.85}
+          opacity={0.9}
           depthWrite={false}
           blending={THREE.AdditiveBlending}
         />
@@ -77,7 +101,7 @@ function Galaxy({ pointer }: { pointer: PointerState }) {
   )
 }
 
-function Stars() {
+function Stars({ sprite }: { sprite: THREE.Texture }) {
   const ref = useRef<THREE.Points>(null)
 
   const positions = useMemo(() => {
@@ -104,14 +128,26 @@ function Stars() {
         <bufferAttribute attach="attributes-position" args={[positions, 3]} />
       </bufferGeometry>
       <pointsMaterial
-        size={0.04}
+        map={sprite}
+        size={0.12}
         sizeAttenuation
         color="#c4b5fd"
         transparent
-        opacity={0.5}
+        opacity={0.4}
         depthWrite={false}
+        blending={THREE.AdditiveBlending}
       />
     </points>
+  )
+}
+
+function Scene({ pointer, fade }: { pointer: PointerState; fade: FadeState }) {
+  const sprite = useMemo(makeGlowSprite, [])
+  return (
+    <>
+      <Stars sprite={sprite} />
+      <Galaxy sprite={sprite} pointer={pointer} fade={fade} />
+    </>
   )
 }
 
@@ -128,6 +164,7 @@ function StaticBackdrop() {
 export default function HeroScene() {
   const [render3d, setRender3d] = useState(false)
   const pointer = useRef<PointerState>({ x: 0, y: 0 })
+  const fade = useRef<FadeState>({ value: 1 })
 
   useEffect(() => {
     const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches
@@ -142,8 +179,17 @@ export default function HeroScene() {
       pointer.current.x = (e.clientX / window.innerWidth) * 2 - 1
       pointer.current.y = -(e.clientY / window.innerHeight) * 2 + 1
     }
+    const onScroll = () => {
+      // 1 at the top of the hero, 0 once a full viewport has been scrolled
+      fade.current.value = THREE.MathUtils.clamp(1 - window.scrollY / (window.innerHeight * 0.85), 0, 1)
+    }
+    onScroll()
     window.addEventListener("pointermove", onMove)
-    return () => window.removeEventListener("pointermove", onMove)
+    window.addEventListener("scroll", onScroll, { passive: true })
+    return () => {
+      window.removeEventListener("pointermove", onMove)
+      window.removeEventListener("scroll", onScroll)
+    }
   }, [])
 
   if (!render3d) return <StaticBackdrop />
@@ -151,12 +197,11 @@ export default function HeroScene() {
   return (
     <div className="fixed inset-0 z-0 overflow-hidden pointer-events-none animate-in fade-in duration-1000">
       <Canvas
-        camera={{ position: [0, 1.6, 4.5], fov: 55 }}
+        camera={{ position: [0, 1.6, 5], fov: 55 }}
         dpr={[1, 1.5]}
         gl={{ antialias: false, alpha: true, powerPreference: "high-performance" }}
       >
-        <Stars />
-        <Galaxy pointer={pointer.current} />
+        <Scene pointer={pointer.current} fade={fade.current} />
       </Canvas>
       {/* Vignette so text stays readable over the brightest particles */}
       <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(0,0,0,0.45)_0%,transparent_60%)]" />

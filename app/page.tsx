@@ -121,14 +121,14 @@ export default function Home() {
       </section>
 
       {/* About Section */}
-      <section id="about" className="py-20 bg-black/30">
+      <section id="about" className="py-20 bg-black/55">
         <div className="container px-4 mx-auto">
           <AboutMe />
         </div>
       </section>
 
       {/* Services Section */}
-      <section id="services" className="py-20 bg-black/50">
+      <section id="services" className="py-20 bg-black/65">
         <div className="container px-4 mx-auto">
           <motion.div
             initial={{ opacity: 0 }}
@@ -185,7 +185,7 @@ export default function Home() {
       </section>
 
       {/* Portfolio Section */}
-      <section id="portfolio" className="py-20 bg-black/30">
+      <section id="portfolio" className="py-20 bg-black/55">
         <div className="container px-4 mx-auto">
           <motion.div
             initial={{ opacity: 0 }}
@@ -206,7 +206,7 @@ export default function Home() {
       </section>
 
       {/* Contact Section */}
-      <section id="contact" className="relative py-20 bg-black/50 overflow-hidden">
+      <section id="contact" className="relative py-20 bg-black/65 overflow-hidden">
         {/* Ambient background blobs */}
         <div className="absolute top-1/4 -left-32 w-[500px] h-[500px] bg-purple-600/15 rounded-full blur-3xl pointer-events-none" />
         <div className="absolute bottom-1/4 -right-32 w-[500px] h-[500px] bg-pink-600/15 rounded-full blur-3xl pointer-events-none" />
@@ -341,7 +341,7 @@ export default function Home() {
       </section>
 
       {/* Footer with Social Links */}
-      <footer className="py-12 bg-black/60 border-t border-white/5">
+      <footer className="py-12 bg-black/75 border-t border-white/5">
         <div className="container px-4 mx-auto">
           <div className="flex flex-wrap justify-center gap-6 mb-6">
             <SocialIcon icon={<Github />} href="https://github.com/Ezequielagradnik" label="GitHub" />
