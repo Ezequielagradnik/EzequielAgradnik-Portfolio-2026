@@ -21,9 +21,9 @@ export const translations = {
     about: {
       title: "Code & Me",
       mobileDescription:
-        "18-year-old developer working part-time as an Automation Developer at Satellites on Fire, studying Cybersecurity at Universidad de Palermo, and freelancing for clients across Dubai, Israel, and Argentina.",
+        "19-year-old developer working part-time as an Automation Developer at Satellites on Fire, studying Cybersecurity at Universidad de Palermo, and freelancing for clients across Argentina, Israel, Chile, and the USA.",
       greeting: "Hey, I'm Ezequiel Agradnik!",
-      paragraph1Intro: "I'm an 18-year-old developer based in Argentina, currently working part-time as an",
+      paragraph1Intro: "I'm a 19-year-old developer based in Argentina, currently working part-time as an",
       paragraph1Role: "Automation Developer at Satellites on Fire",
       paragraph1End: ", where I build automations that streamline the team's internal processes.",
       paragraph2Intro: "In parallel, I'm studying",
@@ -38,7 +38,7 @@ export const translations = {
       paragraph3And: "and",
       paragraph3Linkup: "Linkup",
       paragraph3For: "for clients across",
-      paragraph3Countries: "Dubai, Israel, and Argentina",
+      paragraph3Countries: "Argentina, Israel, Chile, and the USA",
       paragraph3End: ".",
       paragraph4Intro: "I'm passionate about building",
       paragraph4Solutions: "innovative digital solutions",
@@ -119,7 +119,7 @@ export const translations = {
     portfolio: {
       title: "Featured Projects",
       tagline:
-        "A showcase of websites and applications I've built for clients around the world, from Dubai to Argentina.",
+        "A showcase of websites and applications I've built for clients around the world, from Argentina to the USA.",
       projectCounter: "Project {current} of {total}",
       items: {
         kurtisConner: "Personal website for comedian and content creator",
@@ -170,9 +170,9 @@ export const translations = {
     about: {
       title: "Código y Yo",
       mobileDescription:
-        "Desarrollador de 18 años trabajando part-time como Automation Developer en Satellites on Fire, estudiando Ciberseguridad en la Universidad de Palermo y haciendo freelance para clientes de Dubai, Israel y Argentina.",
+        "Desarrollador de 19 años trabajando part-time como Automation Developer en Satellites on Fire, estudiando Ciberseguridad en la Universidad de Palermo y haciendo freelance para clientes de Argentina, Israel, Chile y Estados Unidos.",
       greeting: "¡Hola! Soy Ezequiel Agradnik",
-      paragraph1Intro: "Soy un desarrollador de 18 años basado en Argentina, actualmente trabajando part-time como",
+      paragraph1Intro: "Soy un desarrollador de 19 años basado en Argentina, actualmente trabajando part-time como",
       paragraph1Role: "Automation Developer en Satellites on Fire",
       paragraph1End: ", donde construyo automatizaciones que optimizan los procesos internos del equipo.",
       paragraph2Intro: "En paralelo, estudio",
@@ -187,7 +187,7 @@ export const translations = {
       paragraph3And: "y",
       paragraph3Linkup: "Linkup",
       paragraph3For: "para clientes de",
-      paragraph3Countries: "Dubai, Israel y Argentina",
+      paragraph3Countries: "Argentina, Israel, Chile y Estados Unidos",
       paragraph3End: ".",
       paragraph4Intro: "Me apasiona construir",
       paragraph4Solutions: "soluciones digitales innovadoras",
@@ -268,7 +268,7 @@ export const translations = {
     portfolio: {
       title: "Proyectos Destacados",
       tagline:
-        "Una selección de sitios y aplicaciones que construí para clientes alrededor del mundo, de Dubai a Argentina.",
+        "Una selección de sitios y aplicaciones que construí para clientes alrededor del mundo, de Argentina a Estados Unidos.",
       projectCounter: "Proyecto {current} de {total}",
       items: {
         kurtisConner: "Sitio personal para comediante y creador de contenido",
@@ -319,9 +319,9 @@ export const translations = {
     about: {
       title: "קוד ואני",
       mobileDescription:
-        "מפתח בן 18 העובד במשרה חלקית כ-Automation Developer ב-Satellites on Fire, לומד סייבר באוניברסיטת פלרמו, ופרילנסר ללקוחות בדובאי, ישראל וארגנטינה.",
+        "מפתח בן 19 העובד במשרה חלקית כ-Automation Developer ב-Satellites on Fire, לומד סייבר באוניברסיטת פלרמו, ופרילנסר ללקוחות בארגנטינה, ישראל, צ׳ילה וארה״ב.",
       greeting: "היי, אני אזקיאל אגרדניק!",
-      paragraph1Intro: "אני מפתח בן 18 שגר בארגנטינה, וכרגע עובד במשרה חלקית כ-",
+      paragraph1Intro: "אני מפתח בן 19 שגר בארגנטינה, וכרגע עובד במשרה חלקית כ-",
       paragraph1Role: "Automation Developer ב-Satellites on Fire",
       paragraph1End: ", שם אני בונה אוטומציות שמייעלות את התהליכים הפנימיים של הצוות.",
       paragraph2Intro: "במקביל, אני לומד",
@@ -336,7 +336,7 @@ export const translations = {
       paragraph3And: "ו-",
       paragraph3Linkup: "Linkup",
       paragraph3For: "ללקוחות מ-",
-      paragraph3Countries: "דובאי, ישראל וארגנטינה",
+      paragraph3Countries: "ארגנטינה, ישראל, צ׳ילה וארה״ב",
       paragraph3End: ".",
       paragraph4Intro: "אני נלהב מבניית",
       paragraph4Solutions: "פתרונות דיגיטליים חדשניים",
@@ -416,7 +416,7 @@ export const translations = {
     },
     portfolio: {
       title: "פרויקטים נבחרים",
-      tagline: "אוסף של אתרים ואפליקציות שבניתי ללקוחות מסביב לעולם, מדובאי ועד ארגנטינה.",
+      tagline: "אוסף של אתרים ואפליקציות שבניתי ללקוחות מסביב לעולם, מארגנטינה ועד ארה״ב.",
       projectCounter: "פרויקט {current} מתוך {total}",
       items: {
         kurtisConner: "אתר אישי לקומיקאי ויוצר תוכן",

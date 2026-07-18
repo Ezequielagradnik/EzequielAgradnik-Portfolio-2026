@@ -146,9 +146,9 @@ export default function AboutMe() {
                 viewport={{ once: true }}
                 className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8 pb-8 border-b border-gray-800"
               >
-                <Stat number="18" label={t.about.stats.yearsOld} />
+                <Stat number="19" label={t.about.stats.yearsOld} />
                 <Stat number="2+" label={t.about.stats.yrsFreelancing} />
-                <Stat number="3" label={t.about.stats.countries} />
+                <Stat number="4" label={t.about.stats.countries} />
                 <Stat number="10+" label={t.about.stats.clients} />
               </motion.div>
 

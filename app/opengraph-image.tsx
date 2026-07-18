@@ -102,7 +102,7 @@ export default async function Image() {
             <span style={{ color: "#ec4899", fontSize: 32 }}>●</span> 10+ Clients
           </div>
           <div style={{ display: "flex", gap: 14, alignItems: "center" }}>
-            <span style={{ color: "#f43f5e", fontSize: 32 }}>●</span> Argentina · Dubai · Israel
+            <span style={{ color: "#f43f5e", fontSize: 32 }}>●</span> Argentina · Israel · Chile · USA
           </div>
         </div>
       </div>

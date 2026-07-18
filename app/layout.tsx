@@ -6,7 +6,7 @@ import { LanguageProvider } from "@/lib/i18n/context"
 const siteUrl = "https://ezequielagradnik.com"
 const title = "Ezequiel Agradnik — Full-Stack & Automation Developer"
 const description =
-  "18-year-old developer based in Argentina. Automation Developer at Satellites on Fire, Cybersecurity student at Universidad de Palermo. Building websites and automations for 10+ clients across Argentina, Dubai, and Israel."
+  "19-year-old developer based in Argentina. Automation Developer at Satellites on Fire, Cybersecurity student at Universidad de Palermo. Building websites and automations for 10+ clients across Argentina, Israel, Chile, and the USA."
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
