@@ -1,212 +1,129 @@
 "use client"
 
 import type React from "react"
-
-import { useState, useEffect } from "react"
-import Link from "next/link"
-import { motion, AnimatePresence } from "framer-motion"
-import { Menu, X, Github, Linkedin, Calendar } from "lucide-react"
+import { useEffect, useState } from "react"
+import { motion, AnimatePresence, useScroll, useSpring } from "framer-motion"
 import { useLang } from "@/lib/i18n/context"
 import LanguageSwitcher from "@/components/language-switcher"
+import { EASE } from "@/components/primitives"
+import { lockScroll, scrollToId } from "@/components/smooth-scroll"
 
+// Small floating pill: name, links, language. Frosted bone so it reads over both the
+// light canvas and the inverted contact section.
 export default function Navbar() {
-  const [isOpen, setIsOpen] = useState(false)
-  const [scrolled, setScrolled] = useState(false)
+  const [open, setOpen] = useState(false)
   const { t } = useLang()
+  const { scrollYProgress } = useScroll()
+  const progress = useSpring(scrollYProgress, { stiffness: 120, damping: 30, mass: 0.3 })
 
-  useEffect(() => {
-    const handleScroll = () => {
-      if (window.scrollY > 10) {
-        setScrolled(true)
-      } else {
-        setScrolled(false)
-      }
-    }
-
-    window.addEventListener("scroll", handleScroll)
-    return () => window.removeEventListener("scroll", handleScroll)
-  }, [])
-
-  const navLinks = [
-    { name: t.nav.home, href: "#home" },
+  const links = [
     { name: t.nav.about, href: "#about" },
+    { name: t.nav.experience, href: "#experience" },
     { name: t.nav.services, href: "#services" },
     { name: t.nav.contact, href: "#contact" },
   ]
 
-  const scrollToSection = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
-    e.preventDefault()
-    const targetId = href.replace("#", "")
-    const elem = document.getElementById(targetId)
-    elem?.scrollIntoView({ behavior: "smooth" })
-    setIsOpen(false)
-  }
+  useEffect(() => {
+    lockScroll(open)
+    return () => lockScroll(false)
+  }, [open])
 
-  const iconVariants = {
-    initial: { scale: 1 },
-    hover: { scale: 1.2, rotate: 5 },
+  const go = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
+    e.preventDefault()
+    setOpen(false)
+    scrollToId(href.slice(1))
   }
 
   return (
-    <motion.header
-      initial={{ y: -100 }}
-      animate={{ y: 0 }}
-      transition={{ duration: 0.5 }}
-      className="fixed top-3 md:top-5 inset-x-0 z-50 px-3 md:px-4"
-    >
-      {/* Floating glass pill */}
-      <nav
-        className={`mx-auto max-w-4xl rounded-full border backdrop-blur-xl transition-all duration-300 ${
-          scrolled
-            ? "bg-black/70 border-purple-500/30 shadow-[0_0_30px_rgba(168,85,247,0.25)]"
-            : "bg-black/40 border-white/10 shadow-[0_0_20px_rgba(168,85,247,0.12)]"
-        }`}
+    <>
+      {/* Scroll progress hairline */}
+      <motion.div
+        aria-hidden
+        style={{ scaleX: progress }}
+        className="fixed top-0 inset-x-0 z-50 h-px bg-ink origin-left rtl:origin-right"
+      />
+
+      <motion.header
+        initial={{ opacity: 0, y: -8 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.8, ease: EASE, delay: 1.2 }}
+        className="fixed top-3 md:top-4 inset-x-0 z-50 px-4 pointer-events-none"
       >
-        <div className="flex items-center justify-between px-5 md:px-6 py-2.5">
-          <Link
-            href="#home"
-            className="text-xl md:text-2xl font-bold text-white shrink-0"
-            onClick={(e) => scrollToSection(e, "#home")}
+        <nav className="pointer-events-auto mx-auto flex h-12 max-w-3xl items-center justify-between gap-4 rounded-full border border-line bg-white ps-5 pe-3 shadow-hairline">
+          <a
+            href="#top"
+            onClick={(e) => go(e, "#top")}
+            className="text-[15px] font-medium tracking-[-0.01em] text-ink"
+            aria-label="Back to top"
           >
-            Ezequiel<span className="text-red-500">.</span>
-          </Link>
+            Ezequiel<span className="text-muted-foreground">.</span>
+          </a>
 
-          {/* Desktop Navigation */}
-          <div className="hidden md:flex items-center gap-0.5">
-            {navLinks.map((link) => (
-              <Link
-                key={link.name}
-                href={link.href}
-                className="px-3 py-1.5 rounded-full text-sm text-gray-300 hover:text-white hover:bg-white/10 transition-colors duration-300"
-                onClick={(e) => scrollToSection(e, link.href)}
-              >
-                {link.name}
-              </Link>
-            ))}
-          </div>
-
-          <div className="hidden md:flex items-center gap-3">
-            <span className="h-5 w-px bg-white/10" aria-hidden />
-            <motion.a
-              href="https://calendly.com/zenda-websites/30min?back=1&month=2025-04"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-gray-300 hover:text-white transition-colors duration-300"
-              aria-label="Schedule a meeting"
-              variants={iconVariants}
-              initial="initial"
-              whileHover="hover"
-            >
-              <Calendar size={20} />
-            </motion.a>
-            <motion.a
-              href="https://github.com/Ezequielagradnik"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-gray-300 hover:text-white transition-colors duration-300"
-              aria-label="GitHub"
-              variants={iconVariants}
-              initial="initial"
-              whileHover="hover"
-            >
-              <Github size={20} />
-            </motion.a>
-            <motion.a
-              href="https://www.linkedin.com/in/ezequiel-agradnik-a6a790331/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-gray-300 hover:text-white transition-colors duration-300"
-              aria-label="LinkedIn"
-              variants={iconVariants}
-              initial="initial"
-              whileHover="hover"
-            >
-              <Linkedin size={20} />
-            </motion.a>
-            <LanguageSwitcher />
-          </div>
-
-          {/* Mobile Navigation Toggle */}
-          <div className="md:hidden flex items-center space-x-3">
-            <motion.a
-              href="https://calendly.com/zenda-websites/30min?back=1&month=2025-04"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-gray-300 hover:text-white transition-colors duration-300"
-              aria-label="Schedule a meeting"
-              variants={iconVariants}
-              initial="initial"
-              whileHover="hover"
-            >
-              <Calendar size={20} />
-            </motion.a>
-            <motion.a
-              href="https://github.com/Ezequielagradnik"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-gray-300 hover:text-white transition-colors duration-300"
-              aria-label="GitHub"
-              variants={iconVariants}
-              initial="initial"
-              whileHover="hover"
-            >
-              <Github size={20} />
-            </motion.a>
-            <motion.a
-              href="https://www.linkedin.com/in/ezequiel-agradnik-a6a790331/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-gray-300 hover:text-white transition-colors duration-300"
-              aria-label="LinkedIn"
-              variants={iconVariants}
-              initial="initial"
-              whileHover="hover"
-            >
-              <Linkedin size={20} />
-            </motion.a>
-            <button className="text-white focus:outline-none" onClick={() => setIsOpen(!isOpen)} aria-label="Menu">
-              {isOpen ? <X size={22} /> : <Menu size={22} />}
-            </button>
-          </div>
-        </div>
-      </nav>
-
-      {/* Mobile Navigation Menu — floating panel below the pill */}
-      <AnimatePresence>
-        {isOpen && (
-          <motion.div
-            initial={{ opacity: 0, y: -8 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -8 }}
-            transition={{ duration: 0.25 }}
-            className="md:hidden mx-auto max-w-4xl mt-2 rounded-2xl border border-white/10 bg-black/85 backdrop-blur-xl shadow-[0_0_30px_rgba(168,85,247,0.2)] overflow-hidden"
-          >
-            <div className="px-4 py-4">
-              {navLinks.map((link, index) => (
-                <motion.div
-                  key={link.name}
-                  initial={{ opacity: 0, x: -20 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  exit={{ opacity: 0, x: -20 }}
-                  transition={{ delay: index * 0.06 }}
-                  className="text-center mb-3"
+          <ul className="hidden md:flex items-center gap-0.5">
+            {links.map((link) => (
+              <li key={link.href}>
+                <a
+                  href={link.href}
+                  onClick={(e) => go(e, link.href)}
+                  className="block rounded-full px-3.5 py-2 text-[14px] text-muted-foreground transition-colors duration-200 hover:bg-ink/[0.05] hover:text-ink"
                 >
-                  <Link
-                    href={link.href}
-                    className="block text-gray-300 hover:text-white hover:bg-white/5 rounded-xl py-2 transition-colors duration-300 text-lg"
-                    onClick={(e) => scrollToSection(e, link.href)}
+                  {link.name}
+                </a>
+              </li>
+            ))}
+          </ul>
+
+          <div className="hidden md:flex items-center pe-2">
+            <LanguageSwitcher className="!text-[12px]" />
+          </div>
+
+          <button
+            onClick={() => setOpen((v) => !v)}
+            className="md:hidden rounded-full px-3.5 py-2 text-[14px] text-ink transition-colors hover:bg-ink/[0.05]"
+            aria-expanded={open}
+            aria-controls="mobile-menu"
+          >
+            {open ? t.nav.close : t.nav.menu}
+          </button>
+        </nav>
+      </motion.header>
+
+      {/* Mobile menu */}
+      <AnimatePresence>
+        {open && (
+          <motion.div
+            id="mobile-menu"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.3, ease: EASE }}
+            className="fixed inset-0 z-40 bg-bone md:hidden"
+          >
+            <div className="container pt-24 pb-10 h-full flex flex-col justify-between">
+              <ul className="space-y-2">
+                {links.map((link, i) => (
+                  <motion.li
+                    key={link.href}
+                    initial={{ opacity: 0, y: 12 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0 }}
+                    transition={{ duration: 0.5, ease: EASE, delay: 0.05 + i * 0.06 }}
                   >
-                    {link.name}
-                  </Link>
-                </motion.div>
-              ))}
-              <div className="flex justify-center mt-2">
-                <LanguageSwitcher />
-              </div>
+                    <a
+                      href={link.href}
+                      onClick={(e) => go(e, link.href)}
+                      className="block py-3 font-display text-5xl border-b border-line"
+                    >
+                      {link.name}
+                    </a>
+                  </motion.li>
+                ))}
+              </ul>
+              <LanguageSwitcher />
             </div>
           </motion.div>
         )}
       </AnimatePresence>
-    </motion.header>
+    </>
   )
 }

@@ -9,27 +9,29 @@ const options: { code: Locale; label: string }[] = [
   { code: "he", label: "HE" },
 ]
 
-export default function LanguageSwitcher() {
+export default function LanguageSwitcher({ className = "" }: { className?: string }) {
   const { locale, setLocale } = useLang()
 
   return (
-    <div className="inline-flex items-center gap-0.5 rounded-full bg-gray-900/60 border border-gray-700 p-0.5 backdrop-blur-sm">
-      {options.map((option) => {
+    <div className={`inline-flex items-center gap-3 font-mono text-[11px] tracking-[0.14em] ${className}`}>
+      {options.map((option, i) => {
         const active = locale === option.code
         return (
-          <button
-            key={option.code}
-            onClick={() => setLocale(option.code)}
-            aria-label={`Switch language to ${option.label}`}
-            aria-pressed={active}
-            className={`px-2.5 py-1 rounded-full text-xs font-semibold transition-colors ${
-              active
-                ? "bg-gradient-to-r from-purple-500 to-pink-500 text-white"
-                : "text-gray-400 hover:text-white"
-            }`}
-          >
-            {option.label}
-          </button>
+          <span key={option.code} className="inline-flex items-center gap-3">
+            {i > 0 && (
+              <span aria-hidden className="opacity-30">
+                /
+              </span>
+            )}
+            <button
+              onClick={() => setLocale(option.code)}
+              aria-label={`Switch language to ${option.label}`}
+              aria-pressed={active}
+              className={`transition-opacity duration-300 ${active ? "opacity-100" : "opacity-40 hover:opacity-100"}`}
+            >
+              {option.label}
+            </button>
+          </span>
         )
       })}
     </div>
