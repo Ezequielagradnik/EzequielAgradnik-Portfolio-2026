@@ -67,7 +67,7 @@ export default function Hero() {
   })
 
   return (
-    <section id="top" className="relative min-h-[100svh] flex flex-col justify-center pt-24 pb-24">
+    <section id="top" className="relative min-h-[100svh] flex flex-col justify-center pt-24 pb-24 overflow-hidden">
       {/* Place and live time, above the name */}
       <motion.p
         {...fade(0.5)}
@@ -83,7 +83,7 @@ export default function Hero() {
         <span
           ref={probeRef}
           aria-hidden
-          className="absolute invisible whitespace-nowrap font-display leading-none"
+          className="absolute start-0 top-0 invisible pointer-events-none whitespace-nowrap font-display leading-none"
           style={{ fontSize: 100 }}
         >
           {t.hero.name}
@@ -116,7 +116,7 @@ export default function Hero() {
       <motion.button
         {...fade(1)}
         onClick={() => scrollToId("about")}
-        className="absolute bottom-8 start-1/2 -translate-x-1/2 rtl:translate-x-1/2 flex flex-col items-center gap-2 text-muted-foreground hover:text-ink transition-colors"
+        className="absolute bottom-8 start-1/2 -translate-x-1/2 rtl:translate-x-1/2 hidden md:flex flex-col items-center gap-2 text-muted-foreground hover:text-ink transition-colors"
         aria-label={t.hero.scroll}
       >
         <span className="font-mono text-[10px] uppercase tracking-[0.2em]">{t.hero.scroll}</span>

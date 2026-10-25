@@ -32,7 +32,7 @@ export default function Skills() {
       className="relative border-t border-line"
       style={{ height: `${categories.length * STEP_VH + 100}vh` }}
     >
-      <div className="sticky top-0 h-screen flex flex-col justify-center overflow-hidden">
+      <div className="sticky top-0 h-[100svh] flex flex-col justify-center overflow-hidden">
         <div className="container">
           <SectionLabel index="03">{t.skills.label}</SectionLabel>
           <h2 className="mt-6 font-display text-[clamp(2rem,4.5vw,3.5rem)] leading-[1.05]">{t.skills.heading}</h2>

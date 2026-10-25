@@ -63,12 +63,12 @@ export default function Services() {
                     onClick={() => setManual(isOpen ? -1 : i)}
                     aria-expanded={isOpen}
                     aria-controls={`service-${key}`}
-                    className={`relative w-full grid grid-cols-[2.5rem_1fr_auto] md:grid-cols-[3.5rem_1fr_auto] items-center gap-4 py-4 md:py-5 text-start transition-colors duration-300 ${
+                    className={`relative w-full grid grid-cols-[2.5rem_1fr_auto] md:grid-cols-[3.5rem_1fr_auto] items-center gap-4 py-3 md:py-5 text-start transition-colors duration-300 ${
                       isOpen ? "text-ink" : "text-ink/40 hover:text-ink"
                     }`}
                   >
                     <span className="font-mono text-[11px] tracking-[0.14em] tabular-nums">{number}</span>
-                    <span className="font-display text-xl md:text-2xl lg:text-3xl leading-tight">{item.title}</span>
+                    <span className="font-display text-lg md:text-2xl lg:text-3xl leading-tight">{item.title}</span>
                     <PlusMinus open={isOpen} />
                   </button>
 
@@ -83,7 +83,7 @@ export default function Services() {
                         transition={{ duration: 0.45, ease: EASE }}
                         className="overflow-hidden"
                       >
-                        <p className="ps-[2.5rem] md:ps-[3.5rem] pb-5 md:pb-6 pe-10 max-w-xl text-sm md:text-base text-muted-foreground">
+                        <p className="ps-[2.5rem] md:ps-[3.5rem] pb-4 md:pb-6 pe-6 md:pe-10 max-w-xl text-sm md:text-base text-muted-foreground">
                           {item.description}
                         </p>
                       </motion.div>
