@@ -1,7 +1,26 @@
 import type React from "react"
 import type { Metadata, Viewport } from "next"
+import { Inter_Tight, Heebo } from "next/font/google"
+import { GeistMono } from "geist/font/mono"
 import "./globals.css"
 import { LanguageProvider } from "@/lib/i18n/context"
+import SmoothScroll from "@/components/smooth-scroll"
+
+// One sans for everything (display and body), mono for meta.
+const sans = Inter_Tight({
+  subsets: ["latin", "latin-ext"],
+  weight: ["400", "500", "600"],
+  variable: "--font-sans",
+  display: "swap",
+})
+
+// Hebrew fallback; Inter Tight has no Hebrew glyphs.
+const sansHe = Heebo({
+  subsets: ["hebrew"],
+  weight: ["400", "500", "600"],
+  variable: "--font-sans-he",
+  display: "swap",
+})
 
 const siteUrl = "https://ezequielagradnik.com"
 const title = "Ezequiel Agradnik — Full-Stack & Automation Developer"
@@ -59,7 +78,7 @@ export const metadata: Metadata = {
 }
 
 export const viewport: Viewport = {
-  themeColor: "#0a0a0a",
+  themeColor: "#f7f6f3",
   width: "device-width",
   initialScale: 1,
 }
@@ -70,9 +89,11 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="en">
+    <html lang="en" className={`${sans.variable} ${sansHe.variable} ${GeistMono.variable}`}>
       <body>
-        <LanguageProvider>{children}</LanguageProvider>
+        <LanguageProvider>
+          <SmoothScroll>{children}</SmoothScroll>
+        </LanguageProvider>
       </body>
     </html>
   )
