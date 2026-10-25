@@ -13,97 +13,62 @@ export default async function Image() {
           height: "100%",
           display: "flex",
           flexDirection: "column",
-          justifyContent: "center",
-          alignItems: "flex-start",
-          background: "linear-gradient(135deg, #000000 0%, #1a0033 50%, #0a0014 100%)",
-          padding: "80px",
-          position: "relative",
-          fontFamily: "system-ui, -apple-system, sans-serif",
+          justifyContent: "space-between",
+          background: "#f7f6f3",
+          color: "#111111",
+          padding: "72px 80px",
+          fontFamily: "Georgia, 'Times New Roman', serif",
         }}
       >
         <div
           style={{
-            position: "absolute",
-            bottom: -200,
-            right: -200,
-            width: 600,
-            height: 600,
-            background: "radial-gradient(circle, rgba(168,85,247,0.35) 0%, transparent 70%)",
-            borderRadius: "50%",
             display: "flex",
-          }}
-        />
-        <div
-          style={{
-            position: "absolute",
-            top: -150,
-            right: 100,
-            width: 500,
-            height: 500,
-            background: "radial-gradient(circle, rgba(236,72,153,0.25) 0%, transparent 70%)",
-            borderRadius: "50%",
-            display: "flex",
-          }}
-        />
-
-        <div
-          style={{
-            display: "flex",
-            fontSize: 26,
-            color: "#a855f7",
-            fontWeight: 600,
-            letterSpacing: "0.25em",
+            justifyContent: "space-between",
+            fontFamily: "ui-monospace, Menlo, monospace",
+            fontSize: 20,
+            letterSpacing: "0.18em",
             textTransform: "uppercase",
-            marginBottom: 32,
+            color: "#787774",
           }}
         >
-          Portfolio · 2026
+          <span>Buenos Aires · Available for projects</span>
+          <span>EA</span>
+        </div>
+
+        <div style={{ display: "flex", flexDirection: "column" }}>
+          <div style={{ display: "flex", fontSize: 128, lineHeight: 0.95, letterSpacing: "-0.03em" }}>
+            Ezequiel Agradnik
+          </div>
+          <div
+            style={{
+              display: "flex",
+              marginTop: 28,
+              fontSize: 40,
+              fontStyle: "italic",
+              color: "#2f3437",
+              letterSpacing: "-0.01em",
+            }}
+          >
+            Full-stack & automation developer.
+          </div>
         </div>
 
         <div
           style={{
             display: "flex",
-            fontSize: 96,
-            fontWeight: 800,
-            backgroundImage: "linear-gradient(to right, #c084fc, #ec4899, #f43f5e)",
-            backgroundClip: "text",
-            color: "transparent",
-            lineHeight: 1,
-            marginBottom: 24,
+            gap: 40,
+            fontFamily: "ui-monospace, Menlo, monospace",
+            fontSize: 20,
+            letterSpacing: "0.18em",
+            textTransform: "uppercase",
+            color: "#787774",
+            borderTop: "1px solid #eaeaea",
+            paddingTop: 28,
           }}
         >
-          Ezequiel Agradnik
-        </div>
-
-        <div
-          style={{
-            display: "flex",
-            fontSize: 42,
-            color: "#e5e7eb",
-            fontWeight: 500,
-            marginBottom: 56,
-          }}
-        >
-          Full-Stack & Automation Developer
-        </div>
-
-        <div
-          style={{
-            display: "flex",
-            gap: 48,
-            fontSize: 26,
-            color: "#9ca3af",
-          }}
-        >
-          <div style={{ display: "flex", gap: 14, alignItems: "center" }}>
-            <span style={{ color: "#a855f7", fontSize: 32 }}>●</span> 18 y/o
-          </div>
-          <div style={{ display: "flex", gap: 14, alignItems: "center" }}>
-            <span style={{ color: "#ec4899", fontSize: 32 }}>●</span> 10+ Clients
-          </div>
-          <div style={{ display: "flex", gap: 14, alignItems: "center" }}>
-            <span style={{ color: "#f43f5e", fontSize: 32 }}>●</span> Argentina · Israel · Chile · USA
-          </div>
+          <span>19 y/o</span>
+          <span>10+ clients</span>
+          <span>Argentina · Israel · Chile · USA</span>
         </div>
       </div>
     ),
