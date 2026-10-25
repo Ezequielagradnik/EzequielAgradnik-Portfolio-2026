@@ -45,13 +45,13 @@ export default function About() {
 
           {/* Photo */}
           <StaggerItem className="md:col-span-2 md:row-span-2">
-            <div className="relative h-full aspect-[4/5] md:aspect-auto rounded-xl overflow-hidden border border-line bg-white">
+            <div className="relative h-full aspect-[4/3] md:aspect-auto rounded-xl overflow-hidden border border-line bg-white">
               <Image
                 src="/images/ezequiel-profile.png"
                 alt="Ezequiel Agradnik"
                 fill
                 sizes="(min-width: 768px) 33vw, 90vw"
-                className="object-cover object-top"
+                className="object-cover object-[50%_30%]"
                 priority
               />
             </div>
